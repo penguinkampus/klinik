@@ -4,7 +4,7 @@ include '../koneksi.php';
 $tgl    = date('Y-m-d');
 function autonumber($tabel, $kolom, $lebar=0, $awalan='')
 {
-    $query= mysql_query("SELECT kdmedis FROM trmedis ORDER BY kdmedis DESC LIMIT 1");
+    $query= mysql_query("SELECT nomedis FROM trmedis ORDER BY nomedis DESC LIMIT 1");
     $jumlahrecord = mysql_num_rows($query);
     if($jumlahrecord == 0)
         $nomor=1;
@@ -66,9 +66,9 @@ if (isset($_POST['tambahobat'])) {
 
 if (isset($_POST['submit'])) {
   $gettindakan = mysql_fetch_array(mysql_query("SELECT kdtindakan FROM temp_tindakan"));
-  $kdmedis = $_POST['kdmedis'];
+  $nomedis = $_POST['nomedis'];
   $tglmedis = $_POST['tglmedis'];
-  $kddaftar = $_POST['kddaftar'];
+  $nodaftar = $_POST['nodaftar'];
   $nmpasien = $_POST['nmpasien'];
   $umur = $_POST['umur'];
   $keluhan = $_POST['keluhan']; 
@@ -77,16 +77,16 @@ if (isset($_POST['submit'])) {
   $spesialis = $_POST['spesialis'];
   $diagnosa = $_POST['diagnosa'];
 
-  $cekid = mysql_query("SELECT * FROM trmedis WHERE kdmedis = '$kdmedis'");
+  $cekid = mysql_query("SELECT * FROM trmedis WHERE nomedis = '$nomedis'");
   if (mysql_num_rows($cekid) <> 0) {
     echo "<script>alert('Rekam Medis Sudah di Input!');window.location='tambah-rekmedis.php';</script>";
-  } elseif (empty($kdmedis)) {
+  } elseif (empty($nomedis)) {
     echo "<script>alert('Silahkan isi semua data!');window.location='tambah-rekmedis.php';</script>";
   } else {
   $simpan = mysql_query("INSERT INTO trmedis VALUES(
-                        '$kdmedis', 
+                        '$nomedis', 
                         '$tglmedis', 
-                        '$kddaftar', 
+                        '$nodaftar', 
                         '$diagnosa',
                         '$kddokter'
                         )");
@@ -97,7 +97,7 @@ if (isset($_POST['submit'])) {
       while ($t=mysql_fetch_row($simtindakan)) {
 
       mysql_query("INSERT INTO detail_tindakan VALUES (
-                  '$kdmedis',
+                  '$nomedis',
                   '$t[0]',
                   '$t[1]',
                   '$t[2]'
@@ -109,7 +109,7 @@ if (isset($_POST['submit'])) {
       $simobat = mysql_query("SELECT * FROM temp_obat");
       while ($o=mysql_fetch_row($simobat)) {
         mysql_query("INSERT INTO detail_obat VALUES (
-                    '$kdmedis',
+                    '$nomedis',
                     '$o[0]',
                     '$o[1]',
                     '$o[2]'
@@ -176,10 +176,10 @@ if (isset($_POST['submit'])) {
                                                 </tr>
                                                 <tr>
                                                     <?php
-                          $no = 1;
-                          $get = mysql_query("SELECT * FROM temp_tindakan");
-                          while ($tampil=mysql_fetch_array($get)) {
-                          ?>
+                                                        $no = 1;
+                                                        $get = mysql_query("SELECT * FROM temp_tindakan");
+                                                        while ($tampil=mysql_fetch_array($get)) {
+                                                    ?>
                                                         <td>
                                                             <?php echo $no++; ?>
                                                         </td>
@@ -237,10 +237,10 @@ if (isset($_POST['submit'])) {
                                                 </tr>
                                                 <tr>
                                                     <?php
-                          $no = 1;
-                          $get = mysql_query("SELECT * FROM temp_obat");
-                          while ($tampil=mysql_fetch_array($get)) {
-                          ?>
+                                                        $no = 1;
+                                                        $get = mysql_query("SELECT * FROM temp_obat");
+                                                        while ($tampil=mysql_fetch_array($get)) {
+                                                    ?>
                                                         <td>
                                                             <?php echo $no++; ?>
                                                         </td>
@@ -266,9 +266,9 @@ if (isset($_POST['submit'])) {
                                 <form action="tambah-rekmedis.php" method="POST" enctype="multipart/form-data" class="form-horizontal ">
                                     <!-- <div class="col-lg-12"> -->
                                     <div class="form-group row">
-                                        <label class="col-md-2 form-control-label" for="text-input">Kode Rekam Medis</label>
+                                        <label class="col-md-2 form-control-label" for="text-input">No. Rekam Medis</label>
                                         <div class="col-md-3">
-                                            <input type="text" id="text-input" name="kdmedis" class="form-control" value="<?php echo autonumber(" klinik ", "kdmedis ", 4, "RM ") ?>" readonly>
+                                            <input type="text" id="text-input" name="nomedis" class="form-control" value="<?php echo autonumber(" klinik ", "nomedis ", 4, "NM") ?>" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -281,9 +281,9 @@ if (isset($_POST['submit'])) {
                                     <hr>
 
                                     <div class="form-group row">
-                                        <label class="col-md-2 form-control-label" for="text-input">Kode Daftar</label>
+                                        <label class="col-md-2 form-control-label" for="text-input">No. Daftar</label>
                                         <div class="col-md-3">
-                                            <input type="text" id="kddaftar" name="kddaftar" class="form-control" placeholder="Kode Daftar" readonly>
+                                            <input type="text" id="nodaftar" name="nodaftar" class="form-control" placeholder="Kode Daftar" readonly>
                                         </div>
                                         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">CARI</button>
                                     </div>
@@ -365,7 +365,7 @@ if (isset($_POST['submit'])) {
                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
                                             <tr>
-                                                <th>KD Daftar</th>
+                                                <th>No. Daftar</th>
                                                 <th>Nama Pasien</th>
                                                 <th>Umur</th>
                                                 <th>Keluhan</th>
@@ -374,28 +374,28 @@ if (isset($_POST['submit'])) {
                                         </thead>
                                         <tbody>
                                             <?php
-                    $get = mysql_query("SELECT * FROM trdaftar a 
-                                                  JOIN dbpasien b ON a.kdpasien = b.kdpasien 
-                                                  WHERE a.kddaftar 
-                                                    NOT IN (SELECT kddaftar FROM trmedis) 
-                                                    ORDER BY a.kddaftar DESC");
-                    while ($tampil=mysql_fetch_array($get)) {
-                    ?>
+                                            $get = mysql_query("SELECT * FROM trdaftar a 
+                                                                        JOIN dbpasien b ON a.kdpasien = b.kdpasien 
+                                                                        WHERE a.nodaftar 
+                                                                            NOT IN (SELECT nodaftar FROM trmedis) 
+                                                                            ORDER BY a.nodaftar DESC");
+                                            while ($tampil=mysql_fetch_array($get)) {
+                                            ?>
                                                 <tr>
-                                                    <td id='kddaftar_<?php echo $tampil[' kddaftar '];?>'>
-                                                        <?php echo $tampil['kddaftar']; ?>
+                                                    <td id='nodaftar_<?php echo $tampil[' nodaftar '];?>'>
+                                                        <?php echo $tampil['nodaftar']; ?>
                                                     </td>
-                                                    <td align="center" id='nmpasien_<?php echo $tampil[' kddaftar '];?>'>
+                                                    <td align="center" id='nmpasien_<?php echo $tampil[' nodaftar '];?>'>
                                                         <?php echo $tampil['nmpasien']; ?>
                                                     </td>
-                                                    <td align="center" id='umur_<?php echo $tampil[' kddaftar '];?>'>
+                                                    <td align="center" id='umur_<?php echo $tampil[' nodaftar '];?>'>
                                                         <?php echo $tampil['umur']; ?>
                                                     </td>
-                                                    <td id='keluhan_<?php echo $tampil[' kddaftar '];?>'>
+                                                    <td id='keluhan_<?php echo $tampil[' nodaftar '];?>'>
                                                         <?php echo $tampil['keluhan']; ?>
                                                     </td>
                                                     <td align="center">
-                                                        <button onclick="pilihDaftar('<?php echo $tampil['kddaftar']; ?>')" class="btn btn-info btn-xs">Pilih</button>
+                                                        <button onclick="pilihDaftar('<?php echo $tampil['nodaftar']; ?>')" class="btn btn-info btn-xs">Pilih</button>
                                                     </td>
                                                 </tr>
                                                 <?php } ?>
@@ -434,10 +434,10 @@ if (isset($_POST['submit'])) {
                                         </thead>
                                         <tbody>
                                             <?php
-                    $no = 1;
-                    $get = mysql_query("SELECT * FROM dbdokter");
-                    while ($tampil=mysql_fetch_array($get)) {
-                    ?>
+                                            $no = 1;
+                                            $get = mysql_query("SELECT * FROM dbdokter");
+                                            while ($tampil=mysql_fetch_array($get)) {
+                                            ?>
                                                 <tr>
                                                     <td align="center">
                                                         <?php echo $no++; ?>
@@ -491,10 +491,10 @@ if (isset($_POST['submit'])) {
                                         </thead>
                                         <tbody>
                                             <?php
-                    $no = 1;
-                    $get = mysql_query("SELECT * FROM dbtindakan WHERE kdtindakan NOT IN (SELECT kdtindakan FROM temp_tindakan)");
-                    while ($tampil=mysql_fetch_array($get)) {
-                    ?>
+                                            $no = 1;
+                                            $get = mysql_query("SELECT * FROM dbtindakan WHERE kdtindakan NOT IN (SELECT kdtindakan FROM temp_tindakan)");
+                                            while ($tampil=mysql_fetch_array($get)) {
+                                            ?>
                                                 <tr>
                                                     <td align="center">
                                                         <?php echo $no++; ?>
@@ -548,10 +548,10 @@ if (isset($_POST['submit'])) {
                                         </thead>
                                         <tbody>
                                             <?php
-                    $no = 1;
-                    $get = mysql_query("SELECT * FROM dbobat WHERE kdobat NOT IN (SELECT kdobat FROM temp_obat)");
-                    while ($tampil=mysql_fetch_array($get)) {
-                    ?>
+                                            $no = 1;
+                                            $get = mysql_query("SELECT * FROM dbobat WHERE kdobat NOT IN (SELECT kdobat FROM temp_obat)");
+                                            while ($tampil=mysql_fetch_array($get)) {
+                                            ?>
                                                 <tr>
                                                     <td align="center">
                                                         <?php echo $no++; ?>
@@ -593,12 +593,12 @@ if (isset($_POST['submit'])) {
         }
 
         //ambil data dari modal pendaftaran
-        function pilihDaftar(kddaftar) {
-            kddaftar = $('#kddaftar_' + kddaftar).html();
-            nmpasien = $('#nmpasien_' + kddaftar).html();
-            umur = $('#umur_' + kddaftar).html();
-            keluhan = $('#keluhan_' + kddaftar).html();
-            $('#kddaftar').val(kddaftar);
+        function pilihDaftar(nodaftar) {
+            nodaftar = $('#nodaftar_' + nodaftar).html();
+            nmpasien = $('#nmpasien_' + nodaftar).html();
+            umur = $('#umur_' + nodaftar).html();
+            keluhan = $('#keluhan_' + nodaftar).html();
+            $('#nodaftar').val(nodaftar);
             $('#nmpasien').val(nmpasien);
             $('#umur').val(umur);
             $('#keluhan').val(keluhan);
