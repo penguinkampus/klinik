@@ -24,10 +24,10 @@ include '../koneksi.php';
                     </thead>
                     <tbody>
                         <?php
-                          $get = mysql_query("SELECT * FROM trsuratresep a JOIN trmedis b ON a.kdmedis = b.kdmedis
-                                              JOIN trdaftar c ON b.kddaftar = c.kddaftar 
+                          $get = mysql_query("SELECT * FROM trsuratresep a JOIN trmedis b ON a.nomedis = b.nomedis
+                                              JOIN trdaftar c ON b.nodaftar = c.nodaftar 
                                               JOIN dbpasien d ON c.kdpasien = d.kdpasien
-                                              JOIN detail_obat e ON b.kdmedis = e.kdmedis");
+                                              JOIN detail_obat e ON b.nomedis = e.nomedis");
                           while ($tampil=mysql_fetch_array($get)) {
                         ?>
                             <tr>
