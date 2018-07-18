@@ -23,11 +23,11 @@ Chrome 35+, Firefox 31+, Safari 7+, IE 10+
 - v0.9 (July 16, 2018)
   - PHP 5.6
   - Using Bootstrap CSS
-- v0.9.1 (July 17, 2018)
+- v0.9 (July 17, 2018)
   - Create Login
   - Create Master
   - Update Database
-- v0.9.2 (July 18, 2018)
+- v0.9.1 (July 18, 2018)
   - Create Transaksi
   - Bug Fixing
   - Finishing 30%
