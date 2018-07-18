@@ -1,9 +1,9 @@
-<!-- <?php
+<?php
 include '../koneksi.php';
 
 function autonumber($tabel, $kolom, $lebar=0, $awalan='')
 {
-    $query= mysql_query("SELECT id_tindakan FROM tindakan ORDER BY id_tindakan DESC LIMIT 1");
+    $query= mysql_query("SELECT kdtindakan FROM dbtindakan ORDER BY kdtindakan DESC LIMIT 1");
     $jumlahrecord = mysql_num_rows($query);
     if($jumlahrecord == 0)
         $nomor=1;
@@ -20,18 +20,20 @@ function autonumber($tabel, $kolom, $lebar=0, $awalan='')
     return $angka;
 }
 
-if (isset($_POST['submit'])) {
-  $id_tindakan     = $_POST['id_tindakan'];
-  $nama_tindakan   = ucwords($_POST['nama_tindakan']);
-  $alamat_tindakan = ucwords($_POST['alamat_tindakan']);
-  $telp_tindakan   = $_POST['telp_tindakan'];
-  $tarif        = $_POST['tarif'];
 
-  $cekno = mysql_query("SELECT * FROM tindakan WHERE nama_tindakan = '$nama_tindakan'");
+if (isset($_POST['submit'])) {
+  $id_tindakan     = $_POST['kdtindakan'];
+  $nama_tindakan   = ucwords($_POST['nmtindakan']);
+  $keterangan = ucwords($_POST['keterangan']);
+  $harga        = $_POST['harga'];
+  
+  $cekno = mysql_query("SELECT * FROM dbtindakan WHERE nmtindakan = '$nama_tindakan'");
+
   if (mysql_num_rows($cekno) <> 0) {
     echo "<script>alert('tindakan Sudah di Input!');window.location='tindakan.php';</script>";
   } else {
-    $simpan = mysql_query("INSERT INTO tindakan VALUES ('$id_tindakan', '$nama_tindakan', '$alamat_tindakan', '$telp_tindakan', '$tarif', 'Tersedia')");
+    $simpan = mysql_query("INSERT INTO dbtindakan VALUES ('$id_tindakan', '$nama_tindakan', '$keterangan', '$harga')");
+
   }
 
   if ($simpan) {
@@ -40,10 +42,11 @@ if (isset($_POST['submit'])) {
     echo "<script>alert('Data GAGAL di Simpan!');window.location='tindakan.php';</script>";
   }
 }
+  
 
-$id_tindakan = $_GET['id_tindakan'];
-mysql_query("DELETE FROM tindakan WHERE id_tindakan='$id_tindakan'");
-?> -->
+//$id_tindakan = $_GET['kdtindakan'];
+//mysql_query("DELETE FROM tindakan WHERE id_tindakan='$id_tindakan'");
+?>
 
 <div id="page-wrapper">
   <div class="row">
@@ -102,23 +105,19 @@ mysql_query("DELETE FROM tindakan WHERE id_tindakan='$id_tindakan'");
           <form action="tindakan.php" method="POST">
             <div class="form-group">
               <label>ID tindakan</label>
-              <input name="id_tindakan" type="text" class="form-control" value="<?php echo autonumber("db_rentmobil", "id_tindakan", 2, "SP") ?>" readonly>
+              <input name="kdtindakan" type="text" class="form-control" value="<?php echo autonumber("dbtindakan", "kdtindakan", 2, "SP") ?>" readonly>
             </div>
             <div class="form-group">
               <label>Nama tindakan</label>
-              <input name="nama_tindakan" type="text" class="form-control" placeholder="Nama tindakan" maxlength="50" onkeyup="validHuruf(this)" required>
+              <input name="nmtindakan" type="text" class="form-control" placeholder="Nama tindakan" maxlength="50" onkeyup="validHuruf(this)" required>
             </div>
             <div class="form-group">
-              <label>Alamat</label>
-              <textarea id="textarea-input" name="alamat_tindakan" rows="3" class="form-control" placeholder="Alamat" maxlength="80" required></textarea>
-            </div>
-            <div class="form-group">
-              <label>No. Telp</label>
-              <input name="telp_tindakan" type="text" class="form-control" placeholder="Nomor Telepon" maxlength="12" onkeyup="validAngka(this)" required>
+              <label>Keterangan</label>
+              <textarea id="textarea-input" name="keterangan" rows="3" class="form-control" placeholder="Keterangan" maxlength="80" required></textarea>
             </div>
             <div class="form-group">
               <label>Tarif</label>
-              <input name="tarif" type="text" class="form-control" placeholder="Tarif" maxlength="12" onkeyup="validAngka(this)" required>
+              <input name="harga" type="text" class="form-control" placeholder="Tarif" maxlength="12" onkeyup="validAngka(this)" required>
             </div>
 
           </div>
@@ -135,22 +134,22 @@ mysql_query("DELETE FROM tindakan WHERE id_tindakan='$id_tindakan'");
 
 <!--Code JS Validation-->
 <script language='javascript'>
-  //validasi angka
-  function validAngka(a)
-  {
-    if(!/^[0-9.]+$/.test(a.value))
-    {
-      a.value = a.value.substring(0,a.value.length-1000);
-    }
-  }
+  // //validasi angka
+  // function validAngka(a)
+  // {
+  //   if(!/^[0-9.]+$/.test(a.value))
+  //   {
+  //     a.value = a.value.substring(0,a.value.length-1000);
+  //   }
+  // }
 
-  //validasi huruf
-  function validHuruf(a)
-  {
-    if(!/^[a-zA-Z]+$/.test(a.value))
-    {
-      a.value = a.value.substring(0,a.value.length-1000);
-    }
-  }
+  // //validasi huruf
+  // function validHuruf(a)
+  // {
+  //   if(!/^[a-zA-Z]+$/.test(a.value))
+  //   {
+  //     a.value = a.value.substring(0,a.value.length-1000);
+  //   }
+  // }
 </script>
 <!--End of Code JS Validation-->
