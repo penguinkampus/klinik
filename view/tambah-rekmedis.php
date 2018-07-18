@@ -73,21 +73,25 @@ if (isset($_POST['submit'])) {
                         )");
   }
 
-  // if($simpan) {
-  //   $simdet = mysql_query("SELECT * FROM temp_tindakan");
-  //   while ($r=mysql_fetch_row($simdet)) {
-  //     mysql_query("INSERT INTO detail_tindakan VALUES (
-  //                 '$kdmedis',
-  //                 '$r[0]',
-  //                 '$r[1]',
-  //                 '$r[2]'
-  //                 )");
-  //   }
-  //   mysql_query("TRUNCATE TABLE temp_tindakan");
-  //   echo "<script>alert('Data Rekam Medis Berhasil di Input!');window.location='rekmedis.php';</script>";
-  // } else {
-  //   echo "<script>alert('Data GAGAL di Simpan!');window.location='tambah-rekmedis.php';</script>";
-  // }
+    if($simpan == 1){
+    $simdet = mysql_query("SELECT * FROM temp_tindakan");
+      while ($r=mysql_fetch_row($simdet)) {
+
+      mysql_query("INSERT INTO detail_tindakan VALUES (
+                  '$kdmedis',
+                  '$r[0]',
+                  '$r[1]',
+                  '$r[2]'
+                  )");
+    }
+    //kd medis dan kd daftar itu tipe data int dirubah jadi varchar
+    echo "<script>alert('Data Rekam Medis Berhasil di Input!');</script>";
+    mysql_query("TRUNCATE TABLE temp_tindakan");
+}else{
+
+    echo "<script>alert('Data GAGAL di Simpan!');</script>";
+}
+
 }
 
 ?>
