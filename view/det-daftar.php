@@ -7,13 +7,13 @@
 		<a class="btn pull-right" href="daftar.php"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a></br>
 
 		<?php
-		$kddaftar		= mysql_real_escape_string($_GET['kddaftar']);
-		$detail			= mysql_fetch_array(mysql_query("SELECT * FROM trdaftar a JOIN dbpasien b ON a.kdpasien = b.kdpasien WHERE a.kddaftar='$kddaftar'"));
+		$nodaftar		= mysql_real_escape_string($_GET['nodaftar']);
+		$detail			= mysql_fetch_array(mysql_query("SELECT * FROM trdaftar a JOIN dbpasien b ON a.kdpasien = b.kdpasien WHERE a.nodaftar='$nodaftar'"));
 		?>
 		<table class="table">
 			<tr>
 				<th class="col-md-3">Kode Daftar</th>
-				<td><?php echo $detail['kddaftar'] ?></td>
+				<td><?php echo $detail['nodaftar'] ?></td>
 			</tr>
 			<tr>
 				<th class="col-md-3">Tanggal Daftar</th>
