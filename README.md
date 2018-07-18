@@ -1,5 +1,5 @@
 # Klinik Information System
-Feel free to anyone using this system. Crediting isn’t required, but is appreciated and allows develophers to gain exposure..
+Feel free to anyone using this system. Crediting isn’t required, but is appreciated and allows developers to gain exposure..
 
 ## Getting Started
 To begin using this system, choose one of the following options to get started:
