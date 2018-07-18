@@ -13,8 +13,8 @@
                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
                         <tr>
-                            <th>KD Rekam Medis</th>
-                            <th>KD Daftar</th>
+                            <th>No Rekam Medis</th>
+                            <th>No Daftar</th>
                             <th>Nama Pasien</th>
                             <th>Nama Dokter</th>
                             <th>Tanggal</th>
@@ -23,18 +23,18 @@
                     </thead>
                     <tbody>
                         <?php
-          $get = mysql_query("SELECT * FROM trmedis a 
-                                        JOIN trdaftar b ON a.kddaftar = b.kddaftar 
-                                          JOIN dbpasien c ON b.kdpasien = c.kdpasien
+                        $get = mysql_query("SELECT * FROM trmedis a 
+                                            JOIN trdaftar b ON a.nodaftar = b.nodaftar 
+                                            JOIN dbpasien c ON b.kdpasien = c.kdpasien
                                             JOIN dbdokter d ON a.kddokter = d.kddokter");
-          while ($tampil=mysql_fetch_array($get)) {
-          ?>
+                        while ($tampil=mysql_fetch_array($get)) {
+                        ?>
                             <tr>
                                 <td align="center">
-                                    <?php echo $tampil['kdmedis']; ?>
+                                    <?php echo $tampil['nomedis']; ?>
                                 </td>
                                 <td align="center">
-                                    <?php echo $tampil['kddaftar']; ?>
+                                    <?php echo $tampil['nodaftar']; ?>
                                 </td>
                                 <td>
                                     <?php echo $tampil['nmpasien']; ?>
@@ -46,7 +46,7 @@
                                     <?php echo $tampil['tglmedis']; ?>
                                 </td>
                                 <td align="center">
-                                    <a href="det-rekmedis.php?kdmedis=<?php echo $tampil['kdmedis'] ?>" class="btn btn-info btn-sm">Detail</a>
+                                    <a href="det-rekmedis.php?nomedis=<?php echo $tampil['nomedis'] ?>" class="btn btn-info btn-sm">Detail</a>
                                 </td>
                             </tr>
                             <?php } ?>
