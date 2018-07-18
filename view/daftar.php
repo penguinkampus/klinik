@@ -30,13 +30,13 @@ include '../koneksi.php';
           while ($tampil=mysql_fetch_array($get)) {
           ?>
           <tr>
-            <td><?php echo $tampil['kddaftar']; ?></td>
+            <td><?php echo $tampil['nodaftar']; ?></td>
             <td><?php echo $tampil['tgldaftar']; ?></td>
             <td><?php echo $tampil['nmpasien']; ?></td>
             <td><?php echo $tampil['umur']; ?></td>
             <td><?php echo $tampil['keluhan']; ?></td>
             <td align="center">
-              <a href="det-daftar.php?kddaftar=<?php echo $tampil['kddaftar'] ?>" class="btn btn-info btn-sm">Detail</a>
+              <a href="det-daftar.php?nodaftar=<?php echo $tampil['nodaftar'] ?>" class="btn btn-info btn-sm">Detail</a>
             </td>
           </tr>
           <?php } ?>
