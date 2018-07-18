@@ -4,7 +4,7 @@ include '../koneksi.php';
 $tgl    = date('Y-m-d');
 function autonumber($tabel, $kolom, $lebar=0, $awalan='')
 {
-    $query= mysql_query("SELECT kddaftar FROM trdaftar ORDER BY kddaftar DESC LIMIT 1");
+    $query= mysql_query("SELECT nodaftar FROM trdaftar ORDER BY nodaftar DESC LIMIT 1");
     $jumlahrecord = mysql_num_rows($query);
     if($jumlahrecord == 0)
         $nomor=1;
@@ -22,7 +22,7 @@ function autonumber($tabel, $kolom, $lebar=0, $awalan='')
 }
 
 if (isset($_POST['submit'])) {
-  $kddaftar   = $_POST['kddaftar'];
+  $nodaftar   = $_POST['nodaftar'];
   $kdpasien   = $_POST['kdpasien'];
   $tgldaftar  = $_POST['tgldaftar'];
   $nmpasien   = $_POST['nmpasien'];
@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
   $keluhan    = ucwords($_POST['keluhan']);
 
   $simpan   = mysql_query("INSERT INTO trdaftar VALUES (
-                          '$kddaftar'
+                          '$nodaftar'
                           , '$kdpasien'
                           , '$tgldaftar'
                           , '$nmpasien'
@@ -52,7 +52,7 @@ if (isset($_POST['submit'])) {
 <div id="page-wrapper">
   <div class='row'>
     <div class='col-lg-12'>
-      <h3 class="page-header"><span class="glyphicon glyphicon-file"></span> Form Surat Perjanjian Sewa Kendaraan (daftar)</h3>
+      <h3 class="page-header"><span class="glyphicon glyphicon-file"></span> Form Pendaftaran</h3>
     </div>
   </div>
 
@@ -60,16 +60,16 @@ if (isset($_POST['submit'])) {
     <div class="col-lg-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <strong>Tambah daftar</strong>
+          <strong>Tambah Daftar</strong>
         </div>
         <div class="panel-body">
           <div class="row">
             <div class="col-lg-12">
               <form action="tambah-daftar.php" method="POST" enctype="multipart/form-data" class="form-horizontal ">
                 <div class="form-group row">
-                  <label class="col-md-2 form-control-label" for="text-input">Kode Daftar</label>
+                  <label class="col-md-2 form-control-label" for="text-input">No Daftar</label>
                   <div class="col-md-3">
-                    <input type="text" id="kddaftar" name="kddaftar" class="form-control" placeholder="Kode Daftar" value="<?php echo autonumber("klinik", "nodaftar", 4, "KD") ?>" readonly>
+                    <input type="text" id="nodaftar" name="nodaftar" class="form-control" placeholder="No Daftar" value="<?php echo autonumber("klinik", "nodaftar", 4, "ND") ?>" readonly>
                   </div>
                 </div>
                 <div class="form-group row">
