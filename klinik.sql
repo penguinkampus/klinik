@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 17 Jul 2018 pada 16.18
+-- Generation Time: 19 Jul 2018 pada 01.45
 -- Versi Server: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -55,7 +55,7 @@ CREATE TABLE `dbobat` (
   `stok` int(5) NOT NULL,
   `exp` date NOT NULL,
   `keterangan` varchar(40) NOT NULL,
-  `harga` int(15) NOT NULL
+  `harga` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -123,10 +123,10 @@ INSERT INTO `dbpetugas` (`kdpetugas`, `nmpetugas`, `jnskelamin`, `tgllahir`, `al
 --
 
 CREATE TABLE `dbtindakan` (
-  `kdtindakan` varchar(5) NOT NULL,
+  `kdtindakan` varchar(6) NOT NULL,
   `nmtindakan` varchar(30) NOT NULL,
   `keterangan` varchar(50) NOT NULL,
-  `harga` int(15) NOT NULL
+  `harga` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -139,12 +139,32 @@ INSERT INTO `dbtindakan` (`kdtindakan`, `nmtindakan`, `keterangan`, `harga`) VAL
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `detail_obat`
+--
+
+CREATE TABLE `detail_obat` (
+  `nomedis` varchar(6) NOT NULL,
+  `kdobat` varchar(6) NOT NULL,
+  `nmobat` varchar(30) NOT NULL,
+  `harga` int(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `detail_obat`
+--
+
+INSERT INTO `detail_obat` (`nomedis`, `kdobat`, `nmobat`, `harga`) VALUES
+('RM0002', 'OB0002', 'Panadol', 1200);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `detail_tindakan`
 --
 
 CREATE TABLE `detail_tindakan` (
-  `kdmedis` int(6) NOT NULL,
-  `kdtindakan` int(6) NOT NULL,
+  `nomedis` varchar(6) NOT NULL,
+  `kdtindakan` varchar(6) NOT NULL,
   `nmtindakan` varchar(30) NOT NULL,
   `harga` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -153,8 +173,25 @@ CREATE TABLE `detail_tindakan` (
 -- Dumping data untuk tabel `detail_tindakan`
 --
 
-INSERT INTO `detail_tindakan` (`kdmedis`, `kdtindakan`, `nmtindakan`, `harga`) VALUES
-(0, 0, 'Cek Kolestrol', 30000);
+INSERT INTO `detail_tindakan` (`nomedis`, `kdtindakan`, `nmtindakan`, `harga`) VALUES
+('0', '0', 'Cek Kolestrol', 30000),
+('RM0002', 'KT001', 'Cek Kolestrol', 30000),
+('RM0003', 'KT001', 'Cek Kolestrol', 30000),
+('RM0004', 'KT001', 'Cek Kolestrol', 30000),
+('RM0001', 'KT001', 'Cek Kolestrol', 30000),
+('RM0002', 'KT001', 'Cek Kolestrol', 30000);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `temp_obat`
+--
+
+CREATE TABLE `temp_obat` (
+  `kdobat` varchar(6) NOT NULL,
+  `nmobat` varchar(30) NOT NULL,
+  `harga` int(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -168,13 +205,6 @@ CREATE TABLE `temp_tindakan` (
   `harga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
---
--- Dumping data untuk tabel `temp_tindakan`
---
-
-INSERT INTO `temp_tindakan` (`kdtindakan`, `nmtindakan`, `harga`) VALUES
-('KT001', 'Cek Kolestrol', 30000);
-
 -- --------------------------------------------------------
 
 --
@@ -182,9 +212,9 @@ INSERT INTO `temp_tindakan` (`kdtindakan`, `nmtindakan`, `harga`) VALUES
 --
 
 CREATE TABLE `trdaftar` (
-  `kddaftar` varchar(6) NOT NULL,
+  `nodaftar` varchar(6) NOT NULL,
   `kdpasien` varchar(6) NOT NULL,
-  `tgldaftar` datetime NOT NULL,
+  `tgldaftar` date NOT NULL,
   `nmpasien` varchar(50) NOT NULL,
   `goldarah` varchar(3) NOT NULL,
   `umur` varchar(3) NOT NULL,
@@ -195,10 +225,11 @@ CREATE TABLE `trdaftar` (
 -- Dumping data untuk tabel `trdaftar`
 --
 
-INSERT INTO `trdaftar` (`kddaftar`, `kdpasien`, `tgldaftar`, `nmpasien`, `goldarah`, `umur`, `keluhan`) VALUES
-('KD0001', 'KD0001', '2018-07-07 00:00:00', 'Tangkas Rachman', 'AB', '18', 'Sakit Maag'),
-('KD0002', 'KP0002', '2018-07-07 00:00:00', 'Firman', 'AB', '23', 'Mabok Genjer'),
-('KD0003', 'KD0001', '2018-07-17 00:00:00', 'Tangkas Rachman', 'AB', '18', 'Mual');
+INSERT INTO `trdaftar` (`nodaftar`, `kdpasien`, `tgldaftar`, `nmpasien`, `goldarah`, `umur`, `keluhan`) VALUES
+('KD0001', 'KD0001', '2018-07-07', 'Tangkas Rachman', 'AB', '18', 'Sakit Maag'),
+('KD0002', 'KP0002', '2018-07-07', 'Firman', 'AB', '23', 'Mabok Genjer'),
+('KD0003', 'KD0001', '2018-07-17', 'Tangkas Rachman', 'AB', '18', 'Mual'),
+('KD0004', 'KD0001', '2018-07-18', 'Tangkas Rachman', 'AB', '18', 'Asd');
 
 -- --------------------------------------------------------
 
@@ -225,20 +256,20 @@ CREATE TABLE `trkwitansi` (
 --
 
 CREATE TABLE `trmedis` (
-  `kdmedis` varchar(6) NOT NULL,
-  `tglmedis` datetime NOT NULL,
-  `kddaftar` varchar(6) NOT NULL,
+  `nomedis` varchar(6) NOT NULL,
+  `tglmedis` date NOT NULL,
+  `nodaftar` varchar(6) NOT NULL,
   `diagnosa` varchar(75) NOT NULL,
-  `kddokter` varchar(6) NOT NULL,
-  `status` varchar(10) NOT NULL
+  `kddokter` varchar(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `trmedis`
 --
 
-INSERT INTO `trmedis` (`kdmedis`, `tglmedis`, `kddaftar`, `diagnosa`, `kddokter`, `status`) VALUES
-('RM0001', '2018-07-16 00:00:00', 'KD0002', 'Gejala tipes', 'DK0001', 'Selesai');
+INSERT INTO `trmedis` (`nomedis`, `tglmedis`, `nodaftar`, `diagnosa`, `kddokter`) VALUES
+('RM0001', '2018-07-18', 'KD0001', 'asd', 'DK0001'),
+('RM0002', '2018-07-18', 'KD0002', 'Gak cocok di darat', 'DK0001');
 
 -- --------------------------------------------------------
 
@@ -247,10 +278,10 @@ INSERT INTO `trmedis` (`kdmedis`, `tglmedis`, `kddaftar`, `diagnosa`, `kddokter`
 --
 
 CREATE TABLE `trsuratresep` (
-  `kdsuratresep` varchar(6) NOT NULL,
-  `tglsuratresep` datetime NOT NULL,
-  `kdmedis` varchar(6) NOT NULL,
-  `nmpasien` varchar(50) NOT NULL,
+  `noresep` varchar(6) NOT NULL,
+  `tglresep` date NOT NULL,
+  `nomedis` varchar(6) NOT NULL,
+  `nodaftar` varchar(6) NOT NULL,
   `diagnosa` varchar(75) NOT NULL,
   `kdobat` varchar(6) NOT NULL,
   `nmobat` varchar(50) NOT NULL,
@@ -284,7 +315,7 @@ CREATE TABLE `trsuratrujukan` (
 --
 
 CREATE TABLE `trsuratsakit` (
-  `kdsuratsakit` int(11) NOT NULL,
+  `nosuratsakit` int(11) NOT NULL,
   `tglsuratsakit` int(11) NOT NULL,
   `nmpasien` int(11) NOT NULL,
   `umur` int(11) NOT NULL,
@@ -334,13 +365,13 @@ ALTER TABLE `trkwitansi`
 -- Indexes for table `trmedis`
 --
 ALTER TABLE `trmedis`
-  ADD PRIMARY KEY (`kdmedis`);
+  ADD PRIMARY KEY (`nomedis`);
 
 --
 -- Indexes for table `trsuratresep`
 --
 ALTER TABLE `trsuratresep`
-  ADD PRIMARY KEY (`kdsuratresep`);
+  ADD PRIMARY KEY (`noresep`);
 
 --
 -- Indexes for table `trsuratrujukan`
