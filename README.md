@@ -29,7 +29,7 @@ Chrome 35+, Firefox 31+, Safari 7+, IE 10+
   - Update Database
 - v0.9.2 (July 18, 2018)
   - Create Transaksi
-  - Resolved issue
+  - Bug Fixing
   - Finishing 30%
 
 ## Copyright and License
