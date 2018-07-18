@@ -11,7 +11,7 @@ To begin using this system, choose one of the following options to get started:
 Have a bug or an issue with this website? [Open a new issue](https://github.com/penguinkampus/klinik/issues) here on GitHub or leave a comment on the [Under Construction](https://github.com/penguinkampus/klinik).
 
 ## Creator
-**Klinik Information System** was created by **[Muhammad Iqbal Pamungkas](https://me.suaiq.com/)** and **Muhammad Aldiansyah**
+**Klinik Information System** was created by ...
 
 ## System Requirements:
 - Nginx/Apache, PHP 5.6, MySQL
