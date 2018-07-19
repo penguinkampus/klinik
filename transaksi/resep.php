@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Transaksi Surat Resep</title>
+    <title>Transaksi Surat Resep - Klinik</title>
     <!-- Bootstrap Core CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
     <link href="../dist/css/bootstrap-toggle.min.css" rel="stylesheet">
