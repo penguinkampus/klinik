@@ -36,16 +36,16 @@
                         <a class='nav-link' href='../transaksi/rekmedis.php'><i class='fa fa-edit'></i> Cetak Rekam Medis</a>
                     </li>
                     <li class='nav-item'>
-                        <a class='nav-link' href='bukden.php'><i class='fa fa-edit'></i> Cetak Resep</a>
+                        <a class='nav-link' href='../transaksi/resep.php'><i class='fa fa-edit'></i> Cetak Resep</a>
                     </li>
                     <li class='nav-item'>
-                        <a class='nav-link' href='kwitansi.php'><i class='fa fa-edit'></i> Cetak Kwitansi</a>
+                        <a class='nav-link' href='../transaksi/kwitansi.php'><i class='fa fa-edit'></i> Cetak Kwitansi</a>
                     </li>
                     <li class='nav-item'>
-                        <a class='nav-link' href='../transaksi/spk.php'><i class='fa fa-edit'></i> Cetak Surat Rujukan</a>
+                        <a class='nav-link' href='../transaksi/rujukan.php'><i class='fa fa-edit'></i> Cetak Surat Rujukan</a>
                     </li>
                     <li class='nav-item'>
-                        <a class='nav-link' href='../transaksi/stk.php'><i class='fa fa-edit'></i> Cetak Surat Sakit</a>
+                        <a class='nav-link' href='../transaksi/suratsakit.php'><i class='fa fa-edit'></i> Cetak Surat Sakit</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
