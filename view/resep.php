@@ -5,7 +5,7 @@ include '../koneksi.php';
         <div class="row">
             <div class="col-lg-12">
                 <h3 class="page-header"><span class="glyphicon glyphicon-briefcase"></span> Cetak Surat Resep</h3>
-                <a href="tambah-resep.php" style="margin-bottom:20px" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-plus"></span> Tambah Bukti Denda</a>
+                <a href="tambah-resep.php" style="margin-bottom:20px" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-plus"></span> Tambah Surat Resep</a>
             </div>
             <!-- /.col-lg-12 -->
         </div>
