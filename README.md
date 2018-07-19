@@ -33,8 +33,12 @@ Chrome 35+, Firefox 31+, Safari 7+, IE 10+
   - Bug Fixing
   - Finishing 30%
 - v0.9.1 (July 19, 2018)
+  - Create Transaksi Surat Resep
+  - Create Transaksi Surat Rujukan
+  - Create Transaksi Surat Sakit
   - Bug Fixing
   - Update Database
+  - Finishing 50%
 
 ## Copyright and License
 Copyright 2018 Muhammad Iqbal Pamungkas. Code released under the [MIT](https://github.com/penguinkampus/UnderConstruction/blob/master/LICENSE) license.
