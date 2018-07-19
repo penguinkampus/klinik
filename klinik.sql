@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 19 Jul 2018 pada 01.45
+-- Generation Time: 20 Jul 2018 pada 01.09
 -- Versi Server: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -89,7 +89,8 @@ CREATE TABLE `dbpasien` (
 
 INSERT INTO `dbpasien` (`kdpasien`, `nmpasien`, `tgllahir`, `alamat`, `goldarah`, `jnskelamin`, `umur`, `notelp`) VALUES
 ('KD0001', 'Tangkas Rachman', '2018-07-04', 'Jalan Hari Kemerdekaan Timur No 45', 'AB', 'Perempuan', '18', 825325325),
-('KP0002', 'Firman', '2018-07-07', 'Cipadue', 'AB', 'Laki-laki', '23', 121124124);
+('KP0002', 'Firman', '2018-07-07', 'Cipadue', 'AB', 'Laki-laki', '23', 121124124),
+('KP0003', 'Aldiansyah', '2018-07-19', 'Belandamai', 'Z', 'Laki-laki', '23', 123123);
 
 -- --------------------------------------------------------
 
@@ -154,7 +155,10 @@ CREATE TABLE `detail_obat` (
 --
 
 INSERT INTO `detail_obat` (`nomedis`, `kdobat`, `nmobat`, `harga`) VALUES
-('RM0002', 'OB0002', 'Panadol', 1200);
+('NM0001', 'OB0002', 'Panadol', 1200),
+('NM0002', 'OB0002', 'Panadol', 1200),
+('NM0003', 'KO0001', 'Amoxilin', 40000),
+('NM0003', 'OB0002', 'Panadol', 1200);
 
 -- --------------------------------------------------------
 
@@ -174,12 +178,9 @@ CREATE TABLE `detail_tindakan` (
 --
 
 INSERT INTO `detail_tindakan` (`nomedis`, `kdtindakan`, `nmtindakan`, `harga`) VALUES
-('0', '0', 'Cek Kolestrol', 30000),
-('RM0002', 'KT001', 'Cek Kolestrol', 30000),
-('RM0003', 'KT001', 'Cek Kolestrol', 30000),
-('RM0004', 'KT001', 'Cek Kolestrol', 30000),
-('RM0001', 'KT001', 'Cek Kolestrol', 30000),
-('RM0002', 'KT001', 'Cek Kolestrol', 30000);
+('NM0001', 'KT001', 'Cek Kolestrol', 30000),
+('NM0002', 'KT001', 'Cek Kolestrol', 30000),
+('NM0003', 'KT001', 'Cek Kolestrol', 30000);
 
 -- --------------------------------------------------------
 
@@ -213,8 +214,8 @@ CREATE TABLE `temp_tindakan` (
 
 CREATE TABLE `trdaftar` (
   `nodaftar` varchar(6) NOT NULL,
-  `kdpasien` varchar(6) NOT NULL,
   `tgldaftar` date NOT NULL,
+  `kdpasien` varchar(6) NOT NULL,
   `nmpasien` varchar(50) NOT NULL,
   `goldarah` varchar(3) NOT NULL,
   `umur` varchar(3) NOT NULL,
@@ -225,11 +226,14 @@ CREATE TABLE `trdaftar` (
 -- Dumping data untuk tabel `trdaftar`
 --
 
-INSERT INTO `trdaftar` (`nodaftar`, `kdpasien`, `tgldaftar`, `nmpasien`, `goldarah`, `umur`, `keluhan`) VALUES
-('KD0001', 'KD0001', '2018-07-07', 'Tangkas Rachman', 'AB', '18', 'Sakit Maag'),
-('KD0002', 'KP0002', '2018-07-07', 'Firman', 'AB', '23', 'Mabok Genjer'),
-('KD0003', 'KD0001', '2018-07-17', 'Tangkas Rachman', 'AB', '18', 'Mual'),
-('KD0004', 'KD0001', '2018-07-18', 'Tangkas Rachman', 'AB', '18', 'Asd');
+INSERT INTO `trdaftar` (`nodaftar`, `tgldaftar`, `kdpasien`, `nmpasien`, `goldarah`, `umur`, `keluhan`) VALUES
+('ND0001', '2018-07-19', 'KP0002', 'Firman', 'AB', '23', 'Mabok Genjer'),
+('ND0002', '2018-07-19', 'KD0001', 'Tangkas Rachman', 'AB', '18', 'Mual'),
+('ND0003', '2018-07-19', 'KP0003', 'Aldiansyah', 'Z', '23', 'Pusing'),
+('ND0002', '0000-00-00', '', 'Tangkas Rachman', '', '18', 'Mual'),
+('ND0001', '0000-00-00', '', 'Firman', '', '23', 'Mabok Genjer'),
+('ND0001', '0000-00-00', '', 'Firman', '', '23', 'Mabok Genjer'),
+('ND0001', '0000-00-00', '', 'Firman', '', '23', 'Mabok Genjer');
 
 -- --------------------------------------------------------
 
@@ -268,8 +272,9 @@ CREATE TABLE `trmedis` (
 --
 
 INSERT INTO `trmedis` (`nomedis`, `tglmedis`, `nodaftar`, `diagnosa`, `kddokter`) VALUES
-('RM0001', '2018-07-18', 'KD0001', 'asd', 'DK0001'),
-('RM0002', '2018-07-18', 'KD0002', 'Gak cocok di darat', 'DK0001');
+('NM0001', '2018-07-19', 'ND0001', 'Gak cocok di darat', 'DK0001'),
+('NM0002', '2018-07-19', 'ND0002', 'Gejala Tipes', 'DK0001'),
+('NM0003', '2018-07-19', 'ND0003', 'Kurang Jajan', 'DK0001');
 
 -- --------------------------------------------------------
 
@@ -295,18 +300,19 @@ CREATE TABLE `trsuratresep` (
 --
 
 CREATE TABLE `trsuratrujukan` (
-  `norujuk` varchar(6) NOT NULL,
-  `nmrsakit` varchar(75) NOT NULL,
-  `nmpasien` varchar(50) NOT NULL,
-  `jnskelamin` varchar(15) NOT NULL,
-  `umur` varchar(3) NOT NULL,
-  `alamat` varchar(100) NOT NULL,
-  `keluhan` varchar(100) NOT NULL,
-  `diagnosa` varchar(50) NOT NULL,
-  `nmobat` varchar(50) NOT NULL,
-  `tglrujuk` date NOT NULL,
-  `nmdokter` varchar(50) NOT NULL
+  `norujukan` varchar(6) NOT NULL,
+  `tglrujukan` date NOT NULL,
+  `nomedis` varchar(6) NOT NULL,
+  `nodaftar` varchar(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `trsuratrujukan`
+--
+
+INSERT INTO `trsuratrujukan` (`norujukan`, `tglrujukan`, `nomedis`, `nodaftar`) VALUES
+('RJ0001', '2018-07-20', 'NM0001', 'ND0001'),
+('RJ0002', '2018-07-20', 'NM0002', 'ND0002');
 
 -- --------------------------------------------------------
 
@@ -315,16 +321,13 @@ CREATE TABLE `trsuratrujukan` (
 --
 
 CREATE TABLE `trsuratsakit` (
-  `nosuratsakit` int(11) NOT NULL,
-  `tglsuratsakit` int(11) NOT NULL,
-  `nmpasien` int(11) NOT NULL,
-  `umur` int(11) NOT NULL,
-  `pekerjaan` int(11) NOT NULL,
-  `alamat` int(11) NOT NULL,
-  `diagnosa` int(11) NOT NULL,
+  `nosuratsakit` varchar(6) NOT NULL,
+  `tglsuratsakit` date NOT NULL,
+  `nomedis` varchar(6) NOT NULL,
+  `nodaftar` varchar(6) NOT NULL,
   `tgl_awal` date NOT NULL,
   `tgl_akhir` date NOT NULL,
-  `lamahari` int(11) NOT NULL
+  `lamahari` varchar(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -377,7 +380,7 @@ ALTER TABLE `trsuratresep`
 -- Indexes for table `trsuratrujukan`
 --
 ALTER TABLE `trsuratrujukan`
-  ADD PRIMARY KEY (`norujuk`);
+  ADD PRIMARY KEY (`norujukan`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
