@@ -43,9 +43,10 @@ if (isset($_POST['submit'])) {
   }
 }
   
-
-//$id_tindakan = $_GET['kdtindakan'];
-//mysql_query("DELETE FROM tindakan WHERE id_tindakan='$id_tindakan'");
+if(isset($_GET['kdtindakan'])){
+$id_tindakan = $_GET['kdtindakan'];
+mysql_query("DELETE FROM dbtindakan WHERE kdtindakan='$id_tindakan'");
+}
 ?>
 
 <div id="page-wrapper">
@@ -80,8 +81,8 @@ if (isset($_POST['submit'])) {
             <td><?php echo $tampil['keterangan']; ?></td>
             <td align="center">Rp. <?php echo $tampil['harga']; ?></td>
             <td align="center">
-              <a href="edit-tindakan.php?id_tindakan=<?php echo $tampil['id_tindakan'] ?>" class="btn btn-warning btn-sm">Edit</a>
-              <a onclick="if(confirm('Apakah anda yakin ingin menghapus data ini?')){ location.href='tindakan.php?id_tindakan=<?php echo $tampil['id_tindakan']; ?>' }" class="btn btn-danger btn-sm">Hapus</a>
+              <a href="edit-tindakan.php?kdtindakan=<?php echo $tampil['kdtindakan'] ?>" class="btn btn-warning btn-sm">Edit</a>
+              <a onclick="if(confirm('Apakah anda yakin ingin menghapus data ini?')){ location.href='tindakan.php?kdtindakan=<?php echo $tampil['kdtindakan']; ?>' }" class="btn btn-danger btn-sm">Hapus</a>
             </td>
           </tr>
           <?php } ?>
