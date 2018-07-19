@@ -15,7 +15,7 @@ if (isset($_SESSION['login_user'])) {
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Dashboard - Artha Laras</title>
+        <title>Dashboard - Klinik</title>
         <!-- Bootstrap Core CSS -->
         <link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
         <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
