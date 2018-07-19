@@ -68,8 +68,11 @@ if (isset($_POST['update'])) {
   }
 }
 
+if(isset($_GET['kdobat'])){
 $kdobat = $_GET['kdobat'];
-mysql_query("DELETE FROM obat WHERE kdobat='$kdobat'");
+mysql_query("DELETE FROM dbobat WHERE kdobat='$kdobat'");
+}
+
 ?> -->
 <div id="page-wrapper">
   <div class="row">
