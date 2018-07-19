@@ -3,7 +3,7 @@
 <div id="page-wrapper">
 <div class="row">
 	<div class="col-lg-12">
-		<h3><span class="glyphicon glyphicon-list-alt"></span>  Detail dokter</h3>
+		<h3><span class="glyphicon glyphicon-list-alt"></span>  Detail Dokter</h3>
 		<a class="btn" href="dokter.php"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>
 
 <?php
