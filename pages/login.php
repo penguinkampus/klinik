@@ -10,7 +10,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Login Form - Artha Laras</title>
+  <title>Login Form - Klinik</title>
 
   <link href="../dist/css/login.css" rel="stylesheet">
   <link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
