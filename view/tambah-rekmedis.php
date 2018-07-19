@@ -382,21 +382,11 @@ if (isset($_POST['submit'])) {
                                             while ($tampil=mysql_fetch_array($get)) {
                                             ?>
                                                 <tr>
-                                                    <td id='nodaftar_<?php echo $tampil[' nodaftar '];?>'>
-                                                        <?php echo $tampil['nodaftar']; ?>
-                                                    </td>
-                                                    <td align="center" id='nmpasien_<?php echo $tampil[' nodaftar '];?>'>
-                                                        <?php echo $tampil['nmpasien']; ?>
-                                                    </td>
-                                                    <td align="center" id='umur_<?php echo $tampil[' nodaftar '];?>'>
-                                                        <?php echo $tampil['umur']; ?>
-                                                    </td>
-                                                    <td id='keluhan_<?php echo $tampil[' nodaftar '];?>'>
-                                                        <?php echo $tampil['keluhan']; ?>
-                                                    </td>
-                                                    <td align="center">
-                                                        <button onclick="pilihDaftar('<?php echo $tampil['nodaftar']; ?>')" class="btn btn-info btn-xs">Pilih</button>
-                                                    </td>
+                                                    <td id='nodaftar_<?php echo $tampil['nodaftar'];?>'><?php echo $tampil['nodaftar']; ?></td>
+                                                    <td align="center" id='nmpasien_<?php echo $tampil['nodaftar'];?>'><?php echo $tampil['nmpasien']; ?></td>
+                                                    <td align="center" id='umur_<?php echo $tampil['nodaftar'];?>'><?php echo $tampil['umur']; ?></td>
+                                                    <td id='keluhan_<?php echo $tampil['nodaftar'];?>'><?php echo $tampil['keluhan']; ?></td>
+                                                    <td align="center"><button onclick="pilihDaftar('<?php echo $tampil['nodaftar']; ?>')" class="btn btn-info btn-xs">Pilih</button></td>
                                                 </tr>
                                                 <?php } ?>
 
@@ -439,21 +429,11 @@ if (isset($_POST['submit'])) {
                                             while ($tampil=mysql_fetch_array($get)) {
                                             ?>
                                                 <tr>
-                                                    <td align="center">
-                                                        <?php echo $no++; ?>
-                                                    </td>
-                                                    <td align="center" id='kddokter_<?php echo $tampil[' kddokter '];?>'>
-                                                        <?php echo $tampil['kddokter']; ?>
-                                                    </td>
-                                                    <td id='nmdokter_<?php echo $tampil[' kddokter '];?>'>
-                                                        <?php echo $tampil['nmdokter']; ?>
-                                                    </td>
-                                                    <td align="center" id='spesialis_<?php echo $tampil[' kddokter '];?>'>
-                                                        <?php echo $tampil['spesialis']; ?>
-                                                    </td>
-                                                    <td align="center">
-                                                        <button onclick="pilihDokter('<?php echo $tampil['kddokter']; ?>')" class="btn btn-info btn-xs">Pilih</button>
-                                                    </td>
+                                                    <td align="center"><?php echo $no++; ?></td>
+                                                    <td align="center" id='kddokter_<?php echo $tampil['kddokter'];?>'><?php echo $tampil['kddokter']; ?></td>
+                                                    <td id='nmdokter_<?php echo $tampil['kddokter'];?>'><?php echo $tampil['nmdokter']; ?></td>
+                                                    <td align="center" id='spesialis_<?php echo $tampil['kddokter'];?>'><?php echo $tampil['spesialis']; ?></td>
+                                                    <td align="center"><button onclick="pilihDokter('<?php echo $tampil['kddokter']; ?>')" class="btn btn-info btn-xs">Pilih</button></td>
                                                 </tr>
                                                 <?php } ?>
 
@@ -496,21 +476,11 @@ if (isset($_POST['submit'])) {
                                             while ($tampil=mysql_fetch_array($get)) {
                                             ?>
                                                 <tr>
-                                                    <td align="center">
-                                                        <?php echo $no++; ?>
-                                                    </td>
-                                                    <td align="center" id='kdtindakan_<?php echo $tampil[' kdtindakan '];?>'>
-                                                        <?php echo $tampil['kdtindakan']; ?>
-                                                    </td>
-                                                    <td id='nmtindakan_<?php echo $tampil[' kdtindakan '];?>'>
-                                                        <?php echo $tampil['nmtindakan']; ?>
-                                                    </td>
-                                                    <td align="center" id='harga_<?php echo $tampil[' kdtindakan '];?>'>
-                                                        <?php echo $tampil['harga']; ?>
-                                                    </td>
-                                                    <td align="center">
-                                                        <button onclick="pilihTindakan('<?php echo $tampil['kdtindakan']; ?>')" class="btn btn-info btn-xs">Pilih</button>
-                                                    </td>
+                                                    <td align="center"><?php echo $no++; ?></td>
+                                                    <td align="center" id='kdtindakan_<?php echo $tampil['kdtindakan'];?>'><?php echo $tampil['kdtindakan']; ?></td>
+                                                    <td id='nmtindakan_<?php echo $tampil['kdtindakan'];?>'><?php echo $tampil['nmtindakan']; ?></td>
+                                                    <td align="center" id='harga_<?php echo $tampil['kdtindakan'];?>'><?php echo $tampil['harga']; ?></td>
+                                                    <td align="center"><button onclick="pilihTindakan('<?php echo $tampil['kdtindakan']; ?>')" class="btn btn-info btn-xs">Pilih</button></td>
                                                 </tr>
                                                 <?php } ?>
 
@@ -553,21 +523,11 @@ if (isset($_POST['submit'])) {
                                             while ($tampil=mysql_fetch_array($get)) {
                                             ?>
                                                 <tr>
-                                                    <td align="center">
-                                                        <?php echo $no++; ?>
-                                                    </td>
-                                                    <td align="center" id='kdobat_<?php echo $tampil[' kdobat '];?>'>
-                                                        <?php echo $tampil['kdobat']; ?>
-                                                    </td>
-                                                    <td id='nmobat_<?php echo $tampil[' kdobat '];?>'>
-                                                        <?php echo $tampil['nmobat']; ?>
-                                                    </td>
-                                                    <td align="center" id='hargaobat_<?php echo $tampil[' kdobat '];?>'>
-                                                        <?php echo $tampil['harga']; ?>
-                                                    </td>
-                                                    <td align="center">
-                                                        <button onclick="pilihObat('<?php echo $tampil['kdobat']; ?>')" class="btn btn-info btn-xs">Pilih</button>
-                                                    </td>
+                                                    <td align="center"><?php echo $no++; ?></td>
+                                                    <td align="center" id='kdobat_<?php echo $tampil['kdobat'];?>'><?php echo $tampil['kdobat']; ?></td>
+                                                    <td id='nmobat_<?php echo $tampil['kdobat'];?>'><?php echo $tampil['nmobat']; ?></td>
+                                                    <td align="center" id='hargaobat_<?php echo $tampil['kdobat'];?>'><?php echo $tampil['harga']; ?></td>
+                                                    <td align="center"><button onclick="pilihObat('<?php echo $tampil['kdobat']; ?>')" class="btn btn-info btn-xs">Pilih</button></td>
                                                 </tr>
                                                 <?php } ?>
 
@@ -594,10 +554,10 @@ if (isset($_POST['submit'])) {
 
         //ambil data dari modal pendaftaran
         function pilihDaftar(nodaftar) {
-            nodaftar = $('#nodaftar_' + nodaftar).html();
-            nmpasien = $('#nmpasien_' + nodaftar).html();
-            umur = $('#umur_' + nodaftar).html();
-            keluhan = $('#keluhan_' + nodaftar).html();
+            nodaftar = $('#nodaftar_'+nodaftar).html();
+            nmpasien = $('#nmpasien_'+nodaftar).html();
+            umur = $('#umur_'+nodaftar).html();
+            keluhan = $('#keluhan_'+nodaftar).html();
             $('#nodaftar').val(nodaftar);
             $('#nmpasien').val(nmpasien);
             $('#umur').val(umur);
@@ -607,9 +567,9 @@ if (isset($_POST['submit'])) {
 
         //ambil data dari modal dokter
         function pilihDokter(kddokter) {
-            kddokter = $('#kddokter_' + kddokter).html();
-            nmdokter = $('#nmdokter_' + kddokter).html();
-            spesialis = $('#spesialis_' + kddokter).html();
+            kddokter = $('#kddokter_'+kddokter).html();
+            nmdokter = $('#nmdokter_'+kddokter).html();
+            spesialis = $('#spesialis_'+kddokter).html();
             $('#kddokter').val(kddokter);
             $('#nmdokter').val(nmdokter);
             $('#spesialis').val(spesialis);
@@ -618,9 +578,9 @@ if (isset($_POST['submit'])) {
 
         //ambil data dari modal tindakan
         function pilihTindakan(kdtindakan) {
-            kdtindakan = $('#kdtindakan_' + kdtindakan).html();
-            nmtindakan = $('#nmtindakan_' + kdtindakan).html();
-            harga = $('#harga_' + kdtindakan).html();
+            kdtindakan = $('#kdtindakan_'+kdtindakan).html();
+            nmtindakan = $('#nmtindakan_'+kdtindakan).html();
+            harga = $('#harga_'+kdtindakan).html();
             $('#kdtindakan').val(kdtindakan);
             $('#nmtindakan').val(nmtindakan);
             $('#harga').val(harga);
@@ -629,9 +589,9 @@ if (isset($_POST['submit'])) {
 
         //ambil data dari modal tindakan
         function pilihObat(kdobat) {
-            kdobat = $('#kdobat_' + kdobat).html();
-            nmobat = $('#nmobat_' + kdobat).html();
-            harga = $('#hargaobat_' + kdobat).html();
+            kdobat = $('#kdobat_'+kdobat).html();
+            nmobat = $('#nmobat_'+kdobat).html();
+            harga = $('#hargaobat_'+kdobat).html();
             $('#kdobat').val(kdobat);
             $('#nmobat').val(nmobat);
             $('#hargaobat').val(harga);
