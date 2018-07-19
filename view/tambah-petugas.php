@@ -160,12 +160,12 @@ if (isset($_POST['submit'])) {
   }
 
   //validasi huruf
-  function validHuruf(a)
-  {
-    if(!/^[a-zA-Z]+$/.test(a.value))
-    {
-      a.value = a.value.substring(0,a.value.length-1000);
-    }
-  }
+//   function validHuruf(a)
+//   {
+//     if(!/^[a-zA-Z]+$/.test(a.value))
+//     {
+//       a.value = a.value.substring(0,a.value.length-1000);
+//     }
+//   }
 </script>
 <!--End of Code JS Validation-->
