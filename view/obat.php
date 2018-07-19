@@ -49,12 +49,18 @@ if (isset($_POST['submit'])) {
     echo "Data GAGAL di Simpan!";
   }
 }
-
+// penyeseuaian dengan database yang ada pada klinik //
 if (isset($_POST['update'])) {
-  $id_obat  = $_POST['id_obat'];
-  $nama_obat= ucwords($_POST['nama_obat']);
+  $kdobat  = $_POST['kdobat'];
+  $nmobat= ucwords($_POST['nmobat']);
+  $stok= ($_POST['stok']);
+  $exp  = $_POST['exp'];
+  $keterangan  = $_POST['keterangan'];
+  $harga  = $_POST['harga'];
+  
+  
 
-  $update = mysql_query("UPDATE obat SET id_obat='$id_obat', nama_obat='$nama_obat' WHERE id_obat='$id_obat'");
+  $update = mysql_query("UPDATE dbobat SET kdobat='$kdobat', nmobat='$nmobat', stok='$stok', exp='$exp', keterangan='$keterangan', harga='$harga' WHERE kdobat='$kdobat'");
   if ($update) {
     echo "<script>alert('Data BERHASIL di Update!');window.location='obat.php';</script>";
   } else {
@@ -62,8 +68,8 @@ if (isset($_POST['update'])) {
   }
 }
 
-$id_obat = $_GET['id_obat'];
-mysql_query("DELETE FROM obat WHERE id_obat='$id_obat'");
+$kdobat = $_GET['kdobat'];
+mysql_query("DELETE FROM obat WHERE kdobat='$kdobat'");
 ?> -->
 <div id="page-wrapper">
   <div class="row">
@@ -93,13 +99,15 @@ mysql_query("DELETE FROM obat WHERE id_obat='$id_obat'");
           $get = mysql_query("SELECT * FROM dbobat");
           while ($tampil=mysql_fetch_array($get)) {
           ?>
+          <!-- penambahan id pada td disesuaikan dengan piloting pada penyewaan mobil -->
           <tr>
-            <td><?php echo $tampil['kdobat']; ?></td>
-            <td><?php echo $tampil['nmobat']; ?></td>
-            <td><?php echo $tampil['stok']; ?></td>
-            <td><?php echo $tampil['exp']; ?></td>
-            <td><?php echo $tampil['keterangan']; ?></td>
-            <td><?php echo $tampil['harga']; ?></td>
+
+             <td id='kdobat_<?php echo $tampil['kdobat'];?>'><?php echo $tampil['kdobat']; ?></td>
+            <td id='nmobat_<?php echo $tampil['kdobat'];?>'><?php echo $tampil['nmobat']; ?></td>
+            <td id='stok_<?php echo $tampil['kdobat'];?>'><?php echo $tampil['stok']; ?></td>
+            <td id='exp_<?php echo $tampil['kdobat'];?>'><?php echo $tampil['exp']; ?></td>
+            <td id='keterangan_<?php echo $tampil['kdobat'];?>'><?php echo $tampil['keterangan']; ?></td>
+            <td id='harga_<?php echo $tampil['kdobat'];?>'><?php echo $tampil['harga']; ?></td>
             <td align="center">
               <button onclick="pilihobat('<?php echo $tampil['kdobat']; ?>')" data-toggle="modal" data-target="#ModalEdit" class="btn btn-warning btn-sm">Edit</button>
               <a onclick="if(confirm('Apakah anda yakin ingin menghapus data ini?')){ location.href='obat.php?kdobat=<?php echo $tampil['kdobat']; ?>' }" class="btn btn-danger btn-sm">Hapus</a>
@@ -174,15 +182,15 @@ mysql_query("DELETE FROM obat WHERE id_obat='$id_obat'");
           </div>
           <div class="form-group">
             <label>Nama obat</label>
-            <input id="nmobat" name="nmobat" type="text" class="form-control" placeholder="Nama obat" onkeyup="validHuruf(this)" required>
+            <input id="nmobat" name="nmobat" type="text" class="form-control" placeholder="Nama obat"  onkeyup="validHuruf(this)" required>
           </div>
           <div class="form-group">
             <label>Stok</label>
-            <input id="stok" name="stok" type="text" class="form-control" placeholder="Nama obat" onkeyup="validHuruf(this)" required>
+            <input id="stok" name="stok" type="text" class="form-control" placeholder="Nama obat" onkeyup="validAngka(this)" required>
           </div>
           <div class="form-group">
             <label>Kadaluarsa</label>
-            <input id="exp" name="exp" type="text" class="form-control" placeholder="Nama obat" onkeyup="validHuruf(this)" required>
+            <input id="exp" name="exp" type="text" class="form-control" placeholder="Nama obat" onkeyup="validAngka(this)" required>
           </div>
           <div class="form-group">
             <label>Keterangan</label>
@@ -190,7 +198,7 @@ mysql_query("DELETE FROM obat WHERE id_obat='$id_obat'");
           </div>
           <div class="form-group">
             <label>Harga</label>
-            <input id="harga" name="harga" type="text" class="form-control" placeholder="Nama obat" onkeyup="validHuruf(this)" required>
+            <input id="harga" name="harga" type="text" class="form-control" placeholder="Nama obat" onkeyup="validAngka(this)" required>
           </div>
         </div>
         <div class="modal-footer">
@@ -231,4 +239,4 @@ mysql_query("DELETE FROM obat WHERE id_obat='$id_obat'");
       a.value = a.value.substring(0,a.value.length-1000);
     }
   }
-</script
+</script>
