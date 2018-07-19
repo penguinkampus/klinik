@@ -13,7 +13,7 @@ if (isset($_SESSION['login_user'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Master Perlengkapan - Artha Laras</title>
+  <title>Master Obat - Klinik</title>
   <!-- Bootstrap Core CSS -->
   <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
   <link href="../dist/css/bootstrap-toggle.min.css" rel="stylesheet">
