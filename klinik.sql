@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 20 Jul 2018 pada 01.09
+-- Generation Time: 20 Jul 2018 pada 18.18
 -- Versi Server: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -77,6 +77,7 @@ CREATE TABLE `dbpasien` (
   `nmpasien` varchar(50) NOT NULL,
   `tgllahir` date NOT NULL,
   `alamat` varchar(150) NOT NULL,
+  `pekerjaan` varchar(50) NOT NULL,
   `goldarah` varchar(3) NOT NULL,
   `jnskelamin` varchar(15) NOT NULL,
   `umur` varchar(3) NOT NULL,
@@ -87,10 +88,10 @@ CREATE TABLE `dbpasien` (
 -- Dumping data untuk tabel `dbpasien`
 --
 
-INSERT INTO `dbpasien` (`kdpasien`, `nmpasien`, `tgllahir`, `alamat`, `goldarah`, `jnskelamin`, `umur`, `notelp`) VALUES
-('KD0001', 'Tangkas Rachman', '2018-07-04', 'Jalan Hari Kemerdekaan Timur No 45', 'AB', 'Perempuan', '18', 825325325),
-('KP0002', 'Firman', '2018-07-07', 'Cipadue', 'AB', 'Laki-laki', '23', 121124124),
-('KP0003', 'Aldiansyah', '2018-07-19', 'Belandamai', 'Z', 'Laki-laki', '23', 123123);
+INSERT INTO `dbpasien` (`kdpasien`, `nmpasien`, `tgllahir`, `alamat`, `pekerjaan`, `goldarah`, `jnskelamin`, `umur`, `notelp`) VALUES
+('KD0001', 'Tangkas Rachman', '2018-07-04', 'Jalan Hari Kemerdekaan Timur No 45', 'CEO', 'AB', 'Perempuan', '18', 825325325),
+('KP0002', 'Firman', '2018-07-07', 'Cipadue', 'CEO/Donatur', 'AB', 'Laki-laki', '23', 121124124),
+('KP0003', 'Aldiansyah', '2018-07-19', 'Belandamai', 'Owner', 'Z', 'Laki-laki', '23', 123123);
 
 -- --------------------------------------------------------
 
@@ -233,7 +234,10 @@ INSERT INTO `trdaftar` (`nodaftar`, `tgldaftar`, `kdpasien`, `nmpasien`, `goldar
 ('ND0002', '0000-00-00', '', 'Tangkas Rachman', '', '18', 'Mual'),
 ('ND0001', '0000-00-00', '', 'Firman', '', '23', 'Mabok Genjer'),
 ('ND0001', '0000-00-00', '', 'Firman', '', '23', 'Mabok Genjer'),
-('ND0001', '0000-00-00', '', 'Firman', '', '23', 'Mabok Genjer');
+('ND0001', '0000-00-00', '', 'Firman', '', '23', 'Mabok Genjer'),
+('', '0000-00-00', '2018-0', '', '', '', ''),
+('ND0002', '0000-00-00', '2018-0', 'Tangkas Rachman', '', '18', ''),
+('ND0002', '0000-00-00', '2018-0', 'Tangkas Rachman', '', '18', '');
 
 -- --------------------------------------------------------
 
@@ -312,7 +316,8 @@ CREATE TABLE `trsuratrujukan` (
 
 INSERT INTO `trsuratrujukan` (`norujukan`, `tglrujukan`, `nomedis`, `nodaftar`) VALUES
 ('RJ0001', '2018-07-20', 'NM0001', 'ND0001'),
-('RJ0002', '2018-07-20', 'NM0002', 'ND0002');
+('RJ0002', '2018-07-20', 'NM0002', 'ND0002'),
+('RJ0003', '2018-07-20', 'NM0003', 'ND0003');
 
 -- --------------------------------------------------------
 
@@ -325,10 +330,17 @@ CREATE TABLE `trsuratsakit` (
   `tglsuratsakit` date NOT NULL,
   `nomedis` varchar(6) NOT NULL,
   `nodaftar` varchar(6) NOT NULL,
-  `tgl_awal` date NOT NULL,
-  `tgl_akhir` date NOT NULL,
+  `tglawal` date NOT NULL,
+  `tglakhir` date NOT NULL,
   `lamahari` varchar(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `trsuratsakit`
+--
+
+INSERT INTO `trsuratsakit` (`nosuratsakit`, `tglsuratsakit`, `nomedis`, `nodaftar`, `tglawal`, `tglakhir`, `lamahari`) VALUES
+('NS0001', '2018-07-20', 'NM0002', 'ND0002', '2018-07-20', '2018-07-23', '3');
 
 --
 -- Indexes for dumped tables
