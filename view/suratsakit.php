@@ -24,27 +24,19 @@ include '../koneksi.php';
                     </thead>
                     <tbody>
                         <?php
-                          $get = mysql_query("SELECT * FROM trsuratrujukan a JOIN trmedis b ON a.nomedis = b.nomedis
-                                              JOIN trdaftar c ON b.nodaftar = c.nodaftar 
-                                              JOIN dbpasien d ON c.kdpasien = d.kdpasien
-                                              JOIN detail_obat e ON b.nomedis = e.nomedis");
+                          $get = mysql_query("SELECT * FROM trsuratsakit a JOIN trmedis b ON a.nomedis = b.nomedis
+                                            JOIN trdaftar c ON b.nodaftar = c.nodaftar 
+                                            JOIN dbpasien d ON c.kdpasien = d.kdpasien"
+                                            );
                           while ($tampil=mysql_fetch_array($get)) {
                         ?>
                             <tr>
-                                <td>
-                                    <?php echo $tampil['norujukan']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $tampil['nomedis']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $tampil['nmpasien']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $tampil['tglrujukan']; ?>
-                                </td>
+                                <td><?php echo $tampil['nosuratsakit']; ?></td>
+                                <td><?php echo $tampil['nomedis']; ?></td>
+                                <td><?php echo $tampil['nmpasien']; ?></td>
+                                <td><?php echo $tampil['tglsuratsakit']; ?></td>
                                 <td align="center">
-                                    <a href="det-rujukan.php?norujukan=<?php echo $tampil['norujukan'] ?>" class="btn btn-info btn-sm">Detail</a>
+                                    <a href="det-rujukan.php?nosuratsakit=<?php echo $tampil['nosuratsakit'] ?>" class="btn btn-info btn-sm">Detail</a>
                                 </td>
                             </tr>
                             <?php } ?>
