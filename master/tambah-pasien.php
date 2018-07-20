@@ -24,7 +24,7 @@ if (isset($_SESSION['login_user'])) {
   <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
   <link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
-  <link href="../vendor/bootstrap-toggle/doc/stylesheet.css" rel="stylesheet">
+<!--   <link href="../vendor/bootstrap-toggle/doc/stylesheet.css" rel="stylesheet"> -->
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -51,7 +51,7 @@ if (isset($_SESSION['login_user'])) {
   <script src="../vendor/metisMenu/metisMenu.min.js"></script>
   <script src="../vendor/raphael/raphael.min.js"></script>
   <script src="../vendor/morrisjs/morris.min.js"></script>
-  <script src="../vendor/bootstrap-toggle/doc/script.js"></script>
+<!--   <script src="../vendor/bootstrap-toggle/doc/script.js"></script> -->
   <script src="../dist/js/morris-data.js"></script>
   <script src="../dist/js/bootstrap-toggle.min.js"></script>
   <script src="../dist/js/highlight.min.js"></script>
