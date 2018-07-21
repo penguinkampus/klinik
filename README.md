@@ -50,6 +50,7 @@ Chrome 35+, Firefox 31+, Safari 7+, IE 10+
   - Create Laporan
   - Bug Fixing
   - Update Database
+  - Finishing 65%
 
 ## Copyright and License
 Copyright 2018 Muhammad Iqbal Pamungkas. Code released under the [MIT](https://github.com/penguinkampus/UnderConstruction/blob/master/LICENSE) license.
