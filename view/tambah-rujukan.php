@@ -26,18 +26,22 @@ if (isset($_POST['submit'])) {
   $tglrujukan = $_POST['tglrujukan'];
   $nomedis = $_POST['nomedis'];
   $nodaftar = $_POST['nodaftar'];
+  $nmrumahsakit = $_POST['nmrumahsakit'];
+  $spesialis = $_POST['spesialis'];
 
   $simpan   = mysql_query("INSERT INTO trsuratrujukan VALUES (
                           '$norujukan',
                           '$tglrujukan',
                           '$nomedis',
-                          '$nodaftar'
+                          '$nodaftar',
+                          '$nmrumahsakit',
+                          '$spesialis'
                           )");
 
   if ($simpan) {
-    echo "<script>alert('Data BERHASIL di Simpan!');</script>";
+    echo "<script>alert('Data BERHASIL di Simpan!');window.location='rujukan.php';</script>";
   } else {
-    echo "<script>alert('Data GAGAL di Simpan!');</script>";
+    echo "<script>alert('Data GAGAL di Simpan!');window.location='tambah-rujukan.php';</script>";
   }
 }
 
@@ -124,12 +128,24 @@ if (isset($_POST['submit'])) {
                     <textarea rows="2" type="text" id="diagnosa" name="diagnosa" class="form-control" placeholder="Diagnosa" readonly></textarea>
                   </div>
                 </div>
+                <div class="form-group row">
+                  <label class="col-md-2 form-control-label" for="text-input">Nama Rumah Sakit</label>
+                  <div class="col-md-5">
+                    <input type="text" id="nmrumahsakit" name="nmrumahsakit" class="form-control" placeholder="Nama Rumah Sakit">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-2 form-control-label" for="text-input">Spesialis</label>
+                  <div class="col-md-4">
+                    <input type="text" id="spesialis" name="spesialis" class="form-control" placeholder="Spesialis">
+                  </div>
+                </div>
 
                 <div class="form-group row">
                   <label class="col-md-2 form-control-label" for="text-input"></label>
                   <div class="col-md-5">
                     <a href="rujukan.php" type="reset" class="btn btn-default">BATAL</a>
-                    <button name="submit" type="submit" class="btn btn-primary">CETAK</button>
+                    <button name="submit" type="submit" class="btn btn-primary">SIMPAN</button>
                   </div>
                 </div>
               </form>
