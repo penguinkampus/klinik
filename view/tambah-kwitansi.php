@@ -4,7 +4,7 @@ include '../koneksi.php';
 $tgl    = date('Y-m-d');
 function autonumber($tabel, $kolom, $lebar=0, $awalan='')
 {
-    $query= mysql_query("SELECT no_kwitansi FROM kwitansi ORDER BY no_kwitansi DESC LIMIT 1");
+    $query= mysql_query("SELECT nokwitansi FROM trkwitansi ORDER BY nokwitansi DESC LIMIT 1");
     $jumlahrecord = mysql_num_rows($query);
     if($jumlahrecord == 0)
         $nomor=1;
@@ -22,21 +22,24 @@ function autonumber($tabel, $kolom, $lebar=0, $awalan='')
 }
 
 if (isset($_POST['submit'])) {
-  $no_kwitansi   = $_POST['no_kwitansi'];
-  $tgl_kwitansi  = $_POST['tgl_kwitansi'];
-  $no_spsk       = $_POST['no_spsk'];
+  $nokwitansi = $_POST['nokwitansi'];
+  $tglkwitansi = $_POST['tglkwitansi'];
+  $nomedis = $_POST['nomedis'];
+  $totalobat = $_POST['totalobat'];
+  $totaltindakan = $_POST['totaltindakan'];
+  $subtotal  = $_POST['subtotal'];
 
-  $cekid = mysql_query("SELECT * FROM kwitansi WHERE no_spsk = '$no_spsk'");
-  if (mysql_num_rows($cekid) <> 0) {
-    echo "<script>alert('Kwitansi Sudah di Input!');window.location='tambah-kwitansi.php';</script>";
-  } elseif (empty($no_spsk)) {
-    echo "<script>alert('Silahkan isi semua data!');window.location='tambah-kwitansi.php';</script>";
-  } else {
-    $simpan = mysql_query("INSERT INTO kwitansi VALUES('$no_kwitansi', '$tgl_kwitansi', '$no_spsk')");
-  }
+  $simpan = mysql_query("INSERT INTO trkwitansi VALUES(
+                        '$nokwitansi', 
+                        '$tglkwitansi', 
+                        '$nomedis',
+                        '$totalobat',
+                        '$totaltindakan',
+                        '$subtotal'
+                        )");
 
   if ($simpan) {
-    echo "<script>alert('Data Kwitansi Siap di Cetak!');window.location='cetakkwitansi.php?no_kwitansi=$no_kwitansi';</script>";
+    echo "<script>alert('Data Kwitansi Siap di Cetak!');window.location='kwitansi.php';</script>";
   } else {
     echo "<script>alert('Data Kwitansi Gagal di Cetak!');window.location='tambah-kwitansi.php';</script>";
   }
@@ -64,41 +67,53 @@ if (isset($_POST['submit'])) {
                 <div class="form-group row">
                   <label class="col-md-2 form-control-label" for="text-input">No. Kwitansi</label>
                   <div class="col-md-3">
-                    <input type="text" id="no_kwitansi" name="no_kwitansi" class="form-control" value="<?php echo autonumber("db_rentmobil", "no_kwitansi", 3, "KWT") ?>" readonly>
+                    <input type="text" id="nokwitansi" name="nokwitansi" class="form-control" value="<?php echo autonumber("klinik", "nokwitansi", 4, "NK") ?>" readonly>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-2 form-control-label" for="text-input">Tanggal</label>
                   <div class="col-md-4">
-                    <input type="date" id="tgl_kwitansi" name="tgl_kwitansi" class="form-control" value="<?php echo $tgl; ?>" readonly>
+                    <input type="date" id="tglkwitansi" name="tglkwitansi" class="form-control" value="<?php echo $tgl; ?>" readonly>
                   </div>
                 </div>
 
                 <hr>
 
                 <div class="form-group row">
-                  <label class="col-md-2 form-control-label" for="text-input">No. SPSK</label>
+                  <label class="col-md-2 form-control-label" for="text-input">No. Rekam Medis</label>
                   <div class="col-md-3">
-                    <input type="text" id="no_spsk" name="no_spsk" class="form-control" placeholder="Nomor SPSK" readonly>
+                    <input type="text" id="nomedis" name="nomedis" class="form-control" placeholder="No Rekam Medis" readonly>
                   </div>
                   <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">CARI</button>
                 </div>
                 <div class="form-group row">
-                  <label class="col-md-2 form-control-label" for="text-input">Lama Sewa</label>
+                  <label class="col-md-2 form-control-label" for="text-input">No. Pendaftaran</label>
+                  <div class="col-md-3">
+                    <input type="text" id="nodaftar" name="nodaftar" class="form-control" placeholder="No Pendaftaran" readonly>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-2 form-control-label" for="text-input">Nama Pasien</label>
                   <div class="col-md-5">
-                    <input type="text" id="lama_sewa" name="lama_sewa" class="form-control" placeholder="Lama Sewa" readonly>
+                    <input type="text" id="nmpasien" name="nmpasien" class="form-control" placeholder="Nama Pasien" readonly>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-2 form-control-label" for="text-input">Total Obat</label>
+                  <div class="col-md-3">
+                    <input type="text" id="totalobat" name="totalobat" class="form-control" placeholder="Total Harga" readonly>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-2 form-control-label" for="text-input">Total Tindakan</label>
+                  <div class="col-md-3">
+                    <input type="text" id="totaltindakan" name="totaltindakan" class="form-control" placeholder="Total Harga" readonly>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-2 form-control-label" for="text-input">Total Harga</label>
-                  <div class="col-md-5">
-                    <input type="text" id="total_harga" name="total_harga" class="form-control" placeholder="Total Harga" readonly>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-md-2 form-control-label" for="text-input">Nama Penyewa</label>
-                  <div class="col-md-5">
-                    <input type="text" id="nama_penyewa" name="nama_penyewa" class="form-control" placeholder="Nama Penyewa" readonly>
+                  <div class="col-md-3">
+                    <input type="text" id="subtotal" name="subtotal" class="form-control" placeholder="Total Harga" readonly>
                   </div>
                 </div>
 
@@ -124,7 +139,7 @@ if (isset($_POST['submit'])) {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Pilih SPSK</h4>
+        <h4 class="modal-title" id="myModalLabel">Pilih Rekam Medis</h4>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -133,24 +148,35 @@ if (isset($_POST['submit'])) {
             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
               <thead>
                 <tr>
-                  <th>No. SPSK</th>
-                  <th>Lama Sewa</th>
-                  <th>Total Harga</th>
-                  <th>Nama Penyewa</th>
+                  <th>No. Rekam Medis</th>
+                  <th>No. Pendaftaran</th>
+                  <th>Nama Pasien</th>
+                  <th>Total Obat</th>
+                  <th>Total Tindakan</th>
                   <th>Opsi</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
-                $get = mysql_query("SELECT * FROM spsk a JOIN penyewa b ON a.id_penyewa = b.id_penyewa WHERE a.jns_bayar='LUNAS' AND no_spsk NOT IN (SELECT no_spsk FROM kwitansi) ORDER BY no_spsk DESC");
+                $get = mysql_query("SELECT DISTINCT *,
+                                    (SELECT SUM(harga) from trmedis xa JOIN detail_obat xb ON xa.nomedis = xb.nomedis where xa.nomedis = a.nomedis ) totalobat,
+                                    (SELECT SUM(harga) from trmedis xa JOIN detail_tindakan xc ON xa.nomedis = xc.nomedis where xa.nomedis = a.nomedis ) totaltindakan
+                                    FROM trmedis a JOIN trdaftar b ON a.nodaftar = b.nodaftar
+                                        JOIN dbpasien c ON b.kdpasien = c.kdpasien
+                                        JOIN detail_obat d ON a.nomedis = d.nomedis
+                                        JOIN detail_tindakan e ON a.nomedis = e.nomedis
+                                        WHERE a.nomedis NOT IN (SELECT nomedis FROM trkwitansi)
+                                        GROUP BY a.nomedis                    
+                                  ");
                 while ($tampil=mysql_fetch_array($get)) {
                 ?>
                 <tr>
-                  <td id='no_spsk_<?php echo $tampil['no_spsk'];?>'><?php echo $tampil['no_spsk']; ?></td>
-                  <td align="center" id='lama_sewa_<?php echo $tampil['no_spsk'];?>'><?php echo $tampil['lama_sewa']; ?> hari</td>
-                  <td align="center" id='total_harga_<?php echo $tampil['no_spsk'];?>'>Rp. <?php echo $tampil['subtotal']; ?></td>
-                  <td id='nama_penyewa_<?php echo $tampil['no_spsk'];?>'><?php echo $tampil['nama_penyewa']; ?></td>
-                  <td align="center"><button onclick="pilihSPSK('<?php echo $tampil['no_spsk']; ?>')" class="btn btn-info btn-xs">Pilih</button></td>
+                  <td id='nomedis_<?php echo $tampil['nomedis'];?>'><?php echo $tampil['nomedis']; ?></td>
+                  <td id='nodaftar_<?php echo $tampil['nomedis'];?>'><?php echo $tampil['nodaftar']; ?></td>
+                  <td id='nmpasien_<?php echo $tampil['nomedis'];?>'><?php echo $tampil['nmpasien']; ?></td>
+                  <td id='totalobat_<?php echo $tampil['nomedis'];?>'> <?php echo $tampil['totalobat']; ?></td>
+                  <td id='totaltindakan_<?php echo $tampil['nomedis'];?>'> <?php echo $tampil['totaltindakan']; ?></td>
+                  <td align="center"><button onclick="pilihMedis('<?php echo $tampil['nomedis']; ?>')" class="btn btn-info btn-xs">Pilih</button></td>
                 </tr>
                 <?php } ?>
 
@@ -176,15 +202,21 @@ function validAngka(a)
 }
 
 //ambil data dari modal mobil
-function pilihSPSK(no_spsk){
-  no_spsk       = $('#no_spsk_'+no_spsk).html();
-  lama_sewa     = $('#lama_sewa_'+no_spsk).html();
-  total_harga   = $('#total_harga_'+no_spsk).html();
-  nama_penyewa  = $('#nama_penyewa_'+no_spsk).html();
-  $('#no_spsk').val(no_spsk);
-  $('#lama_sewa').val(lama_sewa);
-  $('#total_harga').val(total_harga);
-  $('#nama_penyewa').val(nama_penyewa);
+function pilihMedis(nomedis){
+  nomedis = $('#nomedis_'+nomedis).html();
+  nodaftar = $('#nodaftar_'+nomedis).html();
+  nmpasien  = $('#nmpasien_'+nomedis).html();
+  totalobat = $('#totalobat_'+nomedis).html();
+  totaltindakan = $('#totaltindakan_'+nomedis).html();
+  var totalobat1 = parseInt(totalobat);
+  var totaltindakan1 = parseInt(totaltindakan);
+  var subtotal = (totalobat1+totaltindakan1);
+  $('#nomedis').val(nomedis);
+  $('#nodaftar').val(nodaftar);
+  $('#nmpasien').val(nmpasien);
+  $('#totalobat').val(totalobat);
+  $('#totaltindakan').val(totaltindakan);
+  $("#subtotal").val(subtotal);
   $('#myModal').modal('hide');
 }
 </script>
