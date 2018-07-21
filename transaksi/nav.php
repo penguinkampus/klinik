@@ -33,7 +33,7 @@
                         <a class='nav-link' href='daftar.php'><i class='fa fa-edit'></i> Entry Pendaftaran</a>
                     </li>
                     <li class='nav-item'>
-                        <a class='nav-link' href='rekmedis.php'><i class='fa fa-edit'></i> Entry Rekam Medis</a>
+                        <a class='nav-link' href='rekmedis.php'><i class='fa fa-edit'></i> Cetak Rekam Medis</a>
                     </li>
                     <li class='nav-item'>
                         <a class='nav-link' href='resep.php'><i class='fa fa-edit'></i> Cetak Resep</a>
