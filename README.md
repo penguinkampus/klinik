@@ -46,6 +46,10 @@ Chrome 35+, Firefox 31+, Safari 7+, IE 10+
   - Bug Fixing
   - Update Database
   - Finishing 60%
+- v0.9.1 (July 22, 2018)
+  - Create Laporan
+  - Bug Fixing
+  - Update Database
 
 ## Copyright and License
 Copyright 2018 Muhammad Iqbal Pamungkas. Code released under the [MIT](https://github.com/penguinkampus/UnderConstruction/blob/master/LICENSE) license.
