@@ -47,6 +47,7 @@
                                 </td>
                                 <td align="center">
                                     <a href="det-rekmedis.php?nomedis=<?php echo $tampil['nomedis'] ?>" class="btn btn-info btn-sm">Detail</a>
+                                    <a href="cetakrekmedis.php?nomedis=<?php echo $tampil['nomedis'] ?>" class="btn btn-warning btn-sm">Cetak</a>
                                 </td>
                             </tr>
                             <?php } ?>
