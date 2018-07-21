@@ -6,7 +6,7 @@ include '../koneksi.php';
   <div class='row'>
     <div class='col-lg-12'>
       <h3 class="page-header">
-        <a class="btn btn-defaul" href="invoice.php">Kembali</a>
+        <a class="btn btn-defaul" href="rekmedis.php">Kembali</a>
         <a class="btn btn-default no-print" href="javascript:printDiv('area-1');">Print</a>
       </h3>
     </div>
@@ -16,124 +16,70 @@ include '../koneksi.php';
     <div class="col-lg-12">
       <div id="area-1">
         <div>
-          <div align="left">
-            <img src="../img/cop.jpg" width="400px" alt="Logo Artha Laras"/><br>
-            <!-- Jl. Dr. Ciptomangunkusumo, No. 11, Ciledug - Tangerang 15153,<br>
-            Telp: 021-7319980 / 0812-1341-1361 <br><br> -->
-          </div>
-          <div align="right">
-            <b><u>INVOICE</u></b>
+          <div align="center">
+            <b><u>REKAM MEDIS</u></b>
           </div>
         </div>
 <?php
-$no_invoice	= $_GET['no_invoice'];
-$get = mysql_query("SELECT * FROM invoice a JOIN spsk b ON a.no_spsk = b.no_spsk JOIN penyewa c ON b.id_penyewa = c.id_penyewa JOIN detail_mobil d ON b.no_spsk = d.no_spsk JOIN mobil e ON d.id_mobil = e.id_mobil WHERE a.no_invoice='$no_invoice'");
+$nomedis	= $_GET['nomedis'];
+$get = mysql_query("SELECT * FROM trmedis a JOIN trdaftar b ON a.nodaftar = b.nodaftar
+                    JOIN dbpasien c ON b.kdpasien = c.kdpasien
+                    JOIN dbdokter d ON a.kddokter = d.kddokter 
+                    WHERE a.nomedis='$nomedis'
+                  ");
 while ($tampil=mysql_fetch_array($get)) {
 ?>
-<div>
-<table border="0" width="100%">
+<table border="0" width="300px">
   <tr>
-    <td><b>No. Invoice</b></td>
+    <td><b>No.</b> </td>
     <td>:</td>
-    <td><?php echo $tampil['no_invoice']; ?></td>
-    <td colspan="3"><b>Kepada.&emsp;&emsp;</b></td>
+    <td>&nbsp;<?php echo $tampil['nomedis']; ?></td>
   </tr>
   <tr>
-    <td><b>Tanggal</b> </td>
+    <td><b>Nama Pasien</b> </td>
     <td>:</td>
-    <?php
-    $tgl_invoice= Date_create($_GET['tgl_invoice']);
-    $tglinv     = Date_format($tgl_invoice, "d/m/Y");
-    ?>
-    <td><?php echo $tglinv; ?></td>
-    <td><b>Nama</b> </td>
-    <td>:</td>
-    <td><?php echo $tampil['nama_penyewa']; ?></td>
+    <td>&nbsp;<?php echo $tampil['nmpasien']; ?></td>
   </tr>
   <tr>
-    <td><b>Lama Sewa</b> </td>
+    <td><b>Umur</b> </td>
     <td>:</td>
-    <td><?php echo $tampil['lama_sewa']; ?> hari</td>
+    <td>&nbsp;<?php echo $tampil['umur']; ?></td>
+  </tr>
+  <tr>
+    <td><b>Jenis Kelamin</b> </td>
+    <td>:</td>
+    <td>&nbsp;<?php echo $tampil['jnskelamin']; ?></td>
+  </tr>
+  <tr>
     <td><b>Alamat</b> </td>
     <td>:</td>
-    <td><?php echo $tampil['alamat_penyewa']; ?></td>
+    <td>&nbsp;<?php echo $tampil['alamat']; ?></td>
   </tr>
-  <tr>
-    <td><b>Pembayaran</b> </td>
-    <td>:</td>
-    <td>Bank BCA 54907111696 a/n Dwi Patdianto</td>
-    <td><b>No. Telp</b> </td>
-    <td>:</td>
-    <td><?php echo $tampil['telp_penyewa']; ?></td>
-  </tr>
-</div>
+</table>
 
 <table width="100%" border="1" cellspacing="0">
   <tr>
-    <td align="center"><b>No.</b></td>
-    <td align="center"><b>Merk Mobil</b></td>
-    <td align="center"><b>Harga Sewa</b></td>
-    <td align="center"><b>Jasa Supir</b></td>
-    <td align="center"><b>Total Harga</b></td>
+    <td align="center"><b>Tanggal</b></td>
+    <td align="center"><b>Anamnesis</b></td>
+    <td align="center"><b>Diagnosa</b></td>
   </tr>
   <tr>
     <?php
     $no = 1;
-    $get = mysql_query("SELECT * FROM invoice a JOIN spsk b ON a.no_spsk = b.no_spsk JOIN penyewa c ON b.id_penyewa = c.id_penyewa JOIN detail_mobil d ON b.no_spsk = d.no_spsk JOIN mobil e ON d.id_mobil = e.id_mobil WHERE a.no_invoice='$no_invoice'");
+    $get = mysql_query("SELECT * FROM trmedis a JOIN trdaftar b ON a.nodaftar = b.nodaftar
+                        JOIN dbpasien c ON b.kdpasien = c.kdpasien
+                        JOIN dbdokter d ON a.kddokter = d.kddokter 
+                        WHERE a.nomedis='$nomedis'
+                      ");
     while ($tampil=mysql_fetch_array($get)) {
     ?>
-    <td align="center"><?php echo $no++; ?>.</td>
-    <td align="center"><?php echo $tampil['merk']; ?></td>
-    <td align="center">Rp. <?php echo $tampil['harga']; ?></td>
-    <?php
-      $q = mysql_query("SELECT tarif FROM supir");
-      $data = mysql_fetch_array($q);
-      if($tampil['jasa_supir'] == "Ya"){
-        $x = $data['tarif'];
-      }else{
-        $x = 0;
-      }
-    ?>
-    <td align="center">Rp. <?php echo $x; ?></td>
-    <td align="center">Rp. <?php echo $tampil['harga'] + $x; ?></td>
+    <td align="center"><?php echo $tampil['tglmedis']; ?>.</td>
+    <td align="center"><?php echo $tampil['keluhan']; ?></td>
+    <td align="center"><?php echo $tampil['diagnosa']; ?></td>
   </tr>
   <?php } ?>
-  <?php
-  $tampil = mysql_fetch_array(mysql_query("SELECT * FROM invoice a JOIN spsk b ON a.no_spsk = b.no_spsk JOIN penyewa c ON b.id_penyewa = c.id_penyewa JOIN detail_mobil d ON b.no_spsk = d.no_spsk JOIN mobil e ON d.id_mobil = e.id_mobil WHERE no_invoice='$no_invoice'"));
-  ?>
-  <tr>
-    <td colspan="3" rowspan="3"></td>
-    <td><b>Sub Total</b></td>
-    <td align="center"><b>Rp. <?php echo $tampil['subtotal']; ?></b></td>
-  </tr>
-  <tr>
-    <td><b>DP</b></td>
-    <td align="center"><b>Rp. <?php echo $tampil['sisa_bayar']; ?></b></td>
-  </tr>
-  <tr>
-    <td><b>Sisa Pembayaran</b></td>
-    <td align="center"><b>Rp. <?php echo $tampil['sisa_bayar']; ?></b></td>
-  </tr>
-</table>
+  
 <br>
-
-<table width="100%" border="0" height="150px">
-  <tr>
-    <td align="center" width="250px"><b>Penyewa</b></td>
-    <th></th>
-    <td align="center" width="250px"><b>Staff Admin</b></td>
-  </tr>
-  <tr>
-    <td align="center"></td>
-    <td align="center"><b><i>Terima Kasih,</b><br>Sudah Memakai Jasa Kami.</i></td>
-    <td align="center"></td>
-  </tr>
-  <tr>
-    <td align="center">( <?php echo $tampil['nama_penyewa']; ?> )</td>
-    <td align="center"></td>
-    <td align="center">( <?php echo $_SESSION['login_user']; ?> )</td>
-  </tr>
-</table>
 </div>
 
       </div>
