@@ -26,8 +26,12 @@ include '../koneksi.php';
           </div>
         </div>
 <?php
-$no_kwitansi	= $_GET['no_kwitansi'];
-$get = mysql_query("SELECT * FROM kwitansi a JOIN spsk b ON a.no_spsk = b.no_spsk JOIN penyewa c ON b.id_penyewa = c.id_penyewa JOIN detail_mobil d ON b.no_spsk = d.no_spsk JOIN mobil e ON d.id_mobil = e.id_mobil WHERE a.no_kwitansi='$no_kwitansi'");
+$nokwitansi	= $_GET['nokwitansi'];
+$get = mysql_query("SELECT * FROM trkwitansi a JOIN trmedis b ON a.nomedis = b.nomedis 
+                    JOIN trdaftar c ON b.nodaftar = c.nodaftar
+                    JOIN dbpasien d ON c.kdpasien = d.kdpasien
+                    WHERE a.nokwitansi = '$nokwitansi'"
+                  );
 while ($tampil=mysql_fetch_array($get)) {
 ?>
 <div>
@@ -35,27 +39,22 @@ while ($tampil=mysql_fetch_array($get)) {
   <tr>
     <td><b>No. Kwitansi</b> </td>
     <td>:</td>
-    <td><?php echo $tampil['no_kwitansi']; ?></td>
+    <td><?php echo $tampil['nokwitansi']; ?></td>
     <td><b>Telah terima dari</b> </td>
     <td>:</td>
-    <td><?php echo $tampil['nama_penyewa']; ?></td>
+    <td><?php echo $tampil['nmpasien']; ?></td>
   </tr>
   <tr>
     <td><b>Tanggal</b> </td>
     <td>:</td>
     <?php
-      $tgl_kwitansi = Date_create($tampil['tgl_kwitansi']);
-      $tglkwt       = Date_format($tgl_kwitansi, 'd/m/Y');
+      $tglkwitansi = Date_create($tampil['tglkwitansi']);
+      $tglkwt       = Date_format($tglkwitansi, 'd/m/Y');
     ?>
     <td><?php echo $tglkwt; ?></td>
     <td><b>Sejumlah Uang</b> </td>
     <td>:</td>
     <td>Rp. <?php echo $tampil['subtotal']; ?></td>
-  </tr>
-  <tr>
-    <td><b>Lama Sewa</b> </td>
-    <td>:</td>
-    <td><?php echo $tampil['lama_sewa']; ?> hari</td>
   </tr>
   <tr>
     <td><b>Pembayaran</b></td>
@@ -67,36 +66,54 @@ while ($tampil=mysql_fetch_array($get)) {
 <table width="100%" border="1" cellspacing="0">
   <tr>
     <td align="center"><b>No.</b></td>
-    <td align="center"><b>Merk Mobil</b></td>
-    <td align="center"><b>Harga Sewa</b></td>
-    <td align="center"><b>Jasa Supir</b></td>
-    <td align="center"><b>Total Harga</b></td>
+    <td align="center"><b>Pembayaran Obat</b></td>
+    <td align="center"><b>Pembayaran Tindakan</b></td>
+    <td align="center"><b>Harga Obat</b></td>
+    <td align="center"><b>Harga Tindakan</b></td>
   </tr>
   <tr>
     <?php
     $no = 1;
-    $get = mysql_query("SELECT * FROM kwitansi a JOIN spsk b ON a.no_spsk = b.no_spsk JOIN penyewa c ON b.id_penyewa = c.id_penyewa JOIN detail_mobil d ON b.no_spsk = d.no_spsk JOIN mobil e ON d.id_mobil = e.id_mobil WHERE a.no_kwitansi='$no_kwitansi'");
+    // $get = mysql_query("SELECT * FROM trkwitansi a JOIN trmedis b ON a.nomedis = b.nomedis 
+    //                     JOIN trdaftar c ON b.nodaftar = c.nodaftar
+    //                     JOIN dbpasien d ON c.kdpasien = d.kdpasien
+    //                     JOIN detail_obat e ON b.nomedis = e.nomedis
+    //                     JOIN detail_tindakan f ON b.nomedis = f.nomedis
+    //                     WHERE a.nokwitansi = '$nokwitansi'
+    //                   ");
+
+    $get = mysql_query ("
+    SELECT *,e.harga as hargaobat, f.harga as hargatindakan FROM trkwitansi a JOIN trmedis b ON a.nomedis = b.nomedis 
+    JOIN trdaftar c ON b.nodaftar = c.nodaftar
+    JOIN dbpasien d ON c.kdpasien = d.kdpasien
+    JOIN detail_obat e ON b.nomedis = e.nomedis
+    JOIN detail_tindakan f ON b.nomedis = f.nomedis
+    WHERE a.nokwitansi = '$nokwitansi'
+    
+    ");
+    $nmobat = 'aaaa'; 
     while ($tampil=mysql_fetch_array($get)) {
     ?>
     <td align="center"><?php echo $no++; ?>.</td>
-    <td align="center"><?php echo $tampil['merk']; ?></td>
-    <td align="center">Rp. <?php echo $tampil['harga']; ?></td>
-    <?php
-      $q = mysql_query("SELECT tarif FROM supir");
-      $data = mysql_fetch_array($q);
-      if($tampil['jasa_supir'] == "Ya"){
-        $x = $data['tarif'];
-      }else{
-        $x = 0;
-      }
-    ?>
-    <td align="center">Rp. <?php echo $x; ?></td>
-    <td align="center">Rp. <?php echo $tampil['harga'] + $x; ?></td>
+    <td align="center">
+    <?php echo $tampil['nmobat']; ?>
+    
+    </td>
+    <td align="center">
+    <?php echo $tampil['nmtindakan']; ?>
+    
+    </td>
+    <td align="center">Rp. <?php echo $tampil['hargaobat']; ?></td>
+    <td align="center">Rp. <?php echo $tampil['hargatindakan']; ?></td>
   </tr>
   <?php } ?>
 
   <?php
-  $tampil = mysql_fetch_array(mysql_query("SELECT * FROM kwitansi a JOIN spsk b ON a.no_spsk = b.no_spsk JOIN penyewa c ON b.id_penyewa = c.id_penyewa JOIN detail_mobil d ON b.no_spsk = d.no_spsk JOIN mobil e ON d.id_mobil = e.id_mobil WHERE no_kwitansi='$no_kwitansi'"));
+  $tampil = mysql_fetch_array(mysql_query("SELECT * FROM trkwitansi a JOIN trmedis b ON a.nomedis = b.nomedis 
+  JOIN trdaftar c ON b.nodaftar = c.nodaftar
+  JOIN dbpasien d ON c.kdpasien = d.kdpasien
+  WHERE a.nokwitansi = '$nokwitansi'")
+  );
   ?>
   <tr>
     <td colspan="3" rowspan="3"></td>
@@ -118,7 +135,7 @@ while ($tampil=mysql_fetch_array($get)) {
     <td align="center"></td>
   </tr>
   <tr>
-    <td align="center">( <?php echo $tampil['nama_penyewa']; ?> )</td>
+    <td align="center">( <?php echo $tampil['nmpasien']; ?> )</td>
     <td align="center"></td>
     <td align="center">( <?php echo $_SESSION['login_user']; ?> )</td>
   </tr>
