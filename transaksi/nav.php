@@ -54,19 +54,22 @@
                 <a href="#"><i class="glyphicon glyphicon-inbox"></i> LAPORAN<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li class='nav-item'>
-                        <a class='nav-link' href='../laporan/lapsewa.php'><i class='fa fa-edit'></i> Cetak Lap. Pendaftaran</a>
+                        <a class='nav-link' href='../laporan/lapdaftar.php'><i class='fa fa-edit'></i> Cetak Lap. Pendaftaran</a>
                     </li>
                     <li class='nav-item'>
-                        <a class='nav-link' href='../laporan/lapkembali.php'><i class='fa fa-edit'></i> Cetak Lap. Rekam Medis</a>
+                        <a class='nav-link' href='../laporan/laprujukan.php'><i class='fa fa-edit'></i> Cetak Lap. Surat Rujukan</a>
                     </li>
                     <li class='nav-item'>
-                        <a class='nav-link' href='../laporan/lapdenda.php'><i class='fa fa-edit'></i> Cetak Lap. Surat Rujukan</a>
+                        <a class='nav-link' href='../laporan/lapsuratsakit.php'><i class='fa fa-edit'></i> Cetak Lap. Surat Sakit</a>
                     </li>
                     <li class='nav-item'>
-                        <a class='nav-link' href='../laporan/lapsupir.php'><i class='fa fa-edit'></i> Cetak Lap. Pendapatan</a>
+                        <a class='nav-link' href='../laporan/lappendapatan.php'><i class='fa fa-edit'></i> Cetak Lap. Pendapatan</a>
                     </li>
                     <li class='nav-item'>
-                        <a class='nav-link' href='../laporan/laprekap.php'><i class='fa fa-edit'></i> Laporan Rekapitulasi Obat</a>
+                        <a class='nav-link' href='../laporan/laprekapobat.php'><i class='fa fa-edit'></i> Laporan Rekapitulasi Obat</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='../laporan/laprekapmedis.php'><i class='fa fa-edit'></i> Laporan Rekapitulasi Rekam Medis</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
