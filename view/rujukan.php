@@ -27,24 +27,20 @@ include '../koneksi.php';
                           $get = mysql_query("SELECT * FROM trsuratrujukan a JOIN trmedis b ON a.nomedis = b.nomedis
                                               JOIN trdaftar c ON b.nodaftar = c.nodaftar 
                                               JOIN dbpasien d ON c.kdpasien = d.kdpasien
-                                              JOIN detail_obat e ON b.nomedis = e.nomedis");
+                                              JOIN detail_obat e ON b.nomedis = e.nomedis
+                                              GROUP BY a.nomedis
+                                            ");
                           while ($tampil=mysql_fetch_array($get)) {
                         ?>
                             <tr>
-                                <td>
-                                    <?php echo $tampil['norujukan']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $tampil['nomedis']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $tampil['nmpasien']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $tampil['tglrujukan']; ?>
+                                <td><?php echo $tampil['norujukan']; ?></td>
+                                <td><?php echo $tampil['nomedis']; ?></td>
+                                <td><?php echo $tampil['nmpasien']; ?></td>
+                                <td><?php echo $tampil['tglrujukan']; ?>
                                 </td>
                                 <td align="center">
                                     <a href="det-rujukan.php?norujukan=<?php echo $tampil['norujukan'] ?>" class="btn btn-info btn-sm">Detail</a>
+                                    <a href="cetakrujukan.php?norujukan=<?php echo $tampil['norujukan'] ?>" class="btn btn-warning btn-sm">Cetak</a>
                                 </td>
                             </tr>
                             <?php } ?>
