@@ -9,22 +9,19 @@
         <a href="#"><i class="glyphicon glyphicon-inbox"></i> MASTER<span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
           <li class='nav-item'>
-            <a class='nav-link' href='../master/penyewa.php'><i class='fa fa-edit'></i> Entry Data Penyewa</a>
+              <a class='nav-link' href='../master/pasien.php'><i class='fa fa-edit'></i> Entry Data Pasien</a>
           </li>
           <li class='nav-item'>
-            <a class='nav-link' href='../master/mobil.php'><i class='fa fa-edit'></i> Entry Data Mobil</a>
+              <a class='nav-link' href='../master/dokter.php'><i class='fa fa-edit'></i> Entry Data Dokter</a>
           </li>
           <li class='nav-item'>
-            <a class='nav-link' href='../master/perlengkapan.php'><i class='fa fa-edit'></i> Entry Data Perlengkapan</a>
+              <a class='nav-link' href='../master/obat.php'><i class='fa fa-edit'></i> Entry Data Obat</a>
           </li>
           <li class='nav-item'>
-            <a class='nav-link' href='../master/supir.php'><i class='fa fa-edit'></i> Entry Data Supir</a>
+              <a class='nav-link' href='../master/tindakan.php'><i class='fa fa-edit'></i> Entry Data Tindakan</a>
           </li>
           <li class='nav-item'>
-            <a class='nav-link' href='../master/jns_denda.php'><i class='fa fa-edit'></i> Entry Data Jenis Denda</a>
-          </li>
-          <li class='nav-item'>
-            <a class='nav-link' href='../master/staff.php'><i class='fa fa-edit'></i> Entry Data Staff</a>
+              <a class='nav-link' href='../master/petugas.php'><i class='fa fa-edit'></i> Entry Data Petugas</a>
           </li>
         </ul>
         <!-- /.nav-second-level -->
@@ -33,25 +30,22 @@
         <a href="#"><i class="glyphicon glyphicon-inbox"></i> TRANSAKSI<span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
           <li class='nav-item'>
-            <a class='nav-link' href='../transaksi/spsk.php'><i class='fa fa-edit'></i> Cetak SPSK</a>
+              <a class='nav-link' href='../transaksi/daftar.php'><i class='fa fa-edit'></i> Entry Pendaftaran</a>
           </li>
           <li class='nav-item'>
-            <a class='nav-link' href='../transaksi/invoice.php'><i class='fa fa-edit'></i> Cetak Invoice</a>
+              <a class='nav-link' href='../transaksi/rekmedis.php'><i class='fa fa-edit'></i> Cetak Rekam Medis</a>
           </li>
           <li class='nav-item'>
-            <a class='nav-link' href='../transaksi/kwitansi.php'><i class='fa fa-edit'></i> Cetak Kwitansi</a>
+              <a class='nav-link' href='../transaksi/resep.php'><i class='fa fa-edit'></i> Cetak Resep</a>
           </li>
           <li class='nav-item'>
-            <a class='nav-link' href='../transaksi/spk.php'><i class='fa fa-edit'></i> Cetak SPK</a>
+              <a class='nav-link' href='../transaksi/kwitansi.php'><i class='fa fa-edit'></i> Cetak Kwitansi</a>
           </li>
           <li class='nav-item'>
-            <a class='nav-link' href='../transaksi/stk.php'><i class='fa fa-edit'></i> Cetak STK</a>
+              <a class='nav-link' href='../transaksi/rujukan.php'><i class='fa fa-edit'></i> Cetak Surat Rujukan</a>
           </li>
           <li class='nav-item'>
-            <a class='nav-link' href='../transaksi/pengembalian.php'><i class='fa fa-edit'></i> Entri Pengembalian</a>
-          </li>
-          <li class='nav-item'>
-            <a class='nav-link' href='../transaksi/bukden.php'><i class='fa fa-edit'></i> Cetak Bukti Denda</a>
+              <a class='nav-link' href='../transaksi/suratsakit.php'><i class='fa fa-edit'></i> Cetak Surat Sakit</a>
           </li>
         </ul>
         <!-- /.nav-second-level -->
@@ -60,19 +54,22 @@
         <a href="#"><i class="glyphicon glyphicon-inbox"></i> LAPORAN<span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
           <li class='nav-item'>
-            <a class='nav-link' href='lapsewa.php'><i class='fa fa-edit'></i> Cetak Lap. Penyewaan</a>
+              <a class='nav-link' href='lapdaftar.php'><i class='fa fa-edit'></i> Cetak Lap. Pendaftaran</a>
           </li>
           <li class='nav-item'>
-            <a class='nav-link' href='lapkembali.php'><i class='fa fa-edit'></i> Cetak Lap. Pengembalian</a>
+              <a class='nav-link' href='laprujukan.php'><i class='fa fa-edit'></i> Cetak Lap. Surat Rujukan</a>
           </li>
           <li class='nav-item'>
-            <a class='nav-link' href='lapdenda.php'><i class='fa fa-edit'></i> Cetak Lap. Denda</a>
+              <a class='nav-link' href='lapsuratsakit.php'><i class='fa fa-edit'></i> Cetak Lap. Surat Sakit</a>
           </li>
           <li class='nav-item'>
-            <a class='nav-link' href='lapsupir.php'><i class='fa fa-edit'></i> Cetak Lap. Supir</a>
+              <a class='nav-link' href='lappendapatan.php'><i class='fa fa-edit'></i> Cetak Lap. Pendapatan</a>
           </li>
           <li class='nav-item'>
-            <a class='nav-link' href='laprekap.php'><i class='fa fa-edit'></i> Laporan Rekapitulasi Mobil</a>
+              <a class='nav-link' href='laprekapobat.php'><i class='fa fa-edit'></i> Laporan Rekapitulasi Obat</a>
+          </li>
+          <li class='nav-item'>
+              <a class='nav-link' href='laprekapmedis.php'><i class='fa fa-edit'></i> Laporan Rekapitulasi Rekam Medis</a>
           </li>
         </ul>
         <!-- /.nav-second-level -->
