@@ -14,24 +14,30 @@
         <thead>
           <tr>
             <th>No. Kwitansi</th>
-            <th>No. SPSK</th>
-            <th>Nama Penyewa</th>
+            <th>No. Rekam Medis</th>
+            <th>Nama Pasien</th>
             <th>Total Harga</th>
+            <th>Tanggal</th>
             <th>Opsi</th>
           </tr>
         </thead>
         <tbody>
           <?php
-          $get = mysql_query("SELECT * FROM kwitansi a JOIN spsk b ON a.no_spsk = b.no_spsk JOIN penyewa c ON b.id_penyewa = c.id_penyewa");
+          $get = mysql_query("SELECT * FROM trkwitansi a JOIN trmedis b ON a.nomedis = b.nomedis
+                              JOIN trdaftar c ON b.nodaftar = c.nodaftar
+                              JOIN dbpasien d ON c.kdpasien = d.kdpasien
+                            ");
           while ($tampil=mysql_fetch_array($get)) {
           ?>
           <tr>
-            <td><?php echo $tampil['no_kwitansi']; ?></td>
-            <td><?php echo $tampil['no_spsk']; ?></td>
-            <td><?php echo $tampil['nama_penyewa']; ?></td>
+            <td><?php echo $tampil['nokwitansi']; ?></td>
+            <td><?php echo $tampil['nomedis']; ?></td>
+            <td><?php echo $tampil['nmpasien']; ?></td>
             <td align="center">Rp. <?php echo $tampil['subtotal']; ?></td>
+            <td><?php echo $tampil['tglkwitansi']; ?></td>
             <td align="center">
-              <a href="det-kwitansi.php?no_kwitansi=<?php echo $tampil['no_kwitansi'] ?>" class="btn btn-info btn-sm">Detail</a>
+              <a href="det-kwitansi.php?nokwitansi=<?php echo $tampil['nokwitansi'] ?>" class="btn btn-info btn-sm">Detail</a>
+              <a href="cetakkwitansi.php?nokwitansi=<?php echo $tampil['nokwitansi'] ?>" class="btn btn-warning btn-sm">Cetak</a>
             </td>
           </tr>
           <?php } ?>
