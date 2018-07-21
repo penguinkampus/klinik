@@ -16,8 +16,8 @@ include '../koneksi.php';
                     <thead>
                         <tr>
                             <th>No. Surat Rujukan</th>
-                            <th>No. Rekam Medis</th>
                             <th>Nama Pasien</th>
+                            <th>Rumah Sakit Rujukan</th>
                             <th>Tanggal Surat Rujukan</th>
                             <th>Opsi</th>
                         </tr>
@@ -34,8 +34,8 @@ include '../koneksi.php';
                         ?>
                             <tr>
                                 <td><?php echo $tampil['norujukan']; ?></td>
-                                <td><?php echo $tampil['nomedis']; ?></td>
                                 <td><?php echo $tampil['nmpasien']; ?></td>
+                                <td><?php echo $tampil['nmrumahsakit']; ?></td>
                                 <td><?php echo $tampil['tglrujukan']; ?>
                                 </td>
                                 <td align="center">
