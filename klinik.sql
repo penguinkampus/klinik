@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 20 Jul 2018 pada 18.18
+-- Generation Time: 21 Jul 2018 pada 19.01
 -- Versi Server: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -136,7 +136,8 @@ CREATE TABLE `dbtindakan` (
 --
 
 INSERT INTO `dbtindakan` (`kdtindakan`, `nmtindakan`, `keterangan`, `harga`) VALUES
-('KT001', 'Cek Kolestrol', 'Mengecek tekanan kolestrol pada tubuh', 30000);
+('KT001', 'Cek Kolestrol', 'Mengecek tekanan kolestrol pada tubuh', 30000),
+('SP02', 'GOGO', 'GIG', 1000);
 
 -- --------------------------------------------------------
 
@@ -156,10 +157,10 @@ CREATE TABLE `detail_obat` (
 --
 
 INSERT INTO `detail_obat` (`nomedis`, `kdobat`, `nmobat`, `harga`) VALUES
+('NM0001', 'KO0001', 'Amoxilin', 40000),
 ('NM0001', 'OB0002', 'Panadol', 1200),
-('NM0002', 'OB0002', 'Panadol', 1200),
-('NM0003', 'KO0001', 'Amoxilin', 40000),
-('NM0003', 'OB0002', 'Panadol', 1200);
+('NM0002', 'KO0001', 'Amoxilin', 40000),
+('NM0002', 'OB0002', 'Panadol', 1200);
 
 -- --------------------------------------------------------
 
@@ -181,7 +182,7 @@ CREATE TABLE `detail_tindakan` (
 INSERT INTO `detail_tindakan` (`nomedis`, `kdtindakan`, `nmtindakan`, `harga`) VALUES
 ('NM0001', 'KT001', 'Cek Kolestrol', 30000),
 ('NM0002', 'KT001', 'Cek Kolestrol', 30000),
-('NM0003', 'KT001', 'Cek Kolestrol', 30000);
+('NM0002', 'SP02', 'GOGO', 1000);
 
 -- --------------------------------------------------------
 
@@ -194,6 +195,14 @@ CREATE TABLE `temp_obat` (
   `nmobat` varchar(30) NOT NULL,
   `harga` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `temp_obat`
+--
+
+INSERT INTO `temp_obat` (`kdobat`, `nmobat`, `harga`) VALUES
+('KO0001', 'Amoxilin', 40000),
+('OB0002', 'Panadol', 1200);
 
 -- --------------------------------------------------------
 
@@ -237,7 +246,9 @@ INSERT INTO `trdaftar` (`nodaftar`, `tgldaftar`, `kdpasien`, `nmpasien`, `goldar
 ('ND0001', '0000-00-00', '', 'Firman', '', '23', 'Mabok Genjer'),
 ('', '0000-00-00', '2018-0', '', '', '', ''),
 ('ND0002', '0000-00-00', '2018-0', 'Tangkas Rachman', '', '18', ''),
-('ND0002', '0000-00-00', '2018-0', 'Tangkas Rachman', '', '18', '');
+('ND0002', '0000-00-00', '2018-0', 'Tangkas Rachman', '', '18', ''),
+('ND0004', '0000-00-00', '2018-0', 'Aldiansyah', 'Z', '23', 'Asd'),
+('ND0005', '2018-07-21', 'KP0002', 'Firman', 'AB', '23', 'Asd\\r\\n');
 
 -- --------------------------------------------------------
 
@@ -246,16 +257,21 @@ INSERT INTO `trdaftar` (`nodaftar`, `tgldaftar`, `kdpasien`, `nmpasien`, `goldar
 --
 
 CREATE TABLE `trkwitansi` (
-  `nokwi` varchar(6) NOT NULL,
-  `tglkwi` date NOT NULL,
-  `nmpasien` varchar(50) NOT NULL,
-  `diagnosa` varchar(30) NOT NULL,
-  `tindakan` varchar(30) NOT NULL,
-  `hrgtindakan` int(11) NOT NULL,
-  `nmobat` varchar(50) NOT NULL,
-  `jmlobat` int(11) NOT NULL,
-  `total` int(11) NOT NULL
+  `nokwitansi` varchar(6) NOT NULL,
+  `tglkwitansi` date NOT NULL,
+  `nomedis` varchar(6) NOT NULL,
+  `totalobat` int(12) NOT NULL,
+  `totaltindakan` int(12) NOT NULL,
+  `subtotal` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `trkwitansi`
+--
+
+INSERT INTO `trkwitansi` (`nokwitansi`, `tglkwitansi`, `nomedis`, `totalobat`, `totaltindakan`, `subtotal`) VALUES
+('NK0001', '2018-07-21', 'NM0001', 41200, 30000, 71200),
+('NK0002', '2018-07-21', 'NM0002', 41200, 31000, 72200);
 
 -- --------------------------------------------------------
 
@@ -276,9 +292,8 @@ CREATE TABLE `trmedis` (
 --
 
 INSERT INTO `trmedis` (`nomedis`, `tglmedis`, `nodaftar`, `diagnosa`, `kddokter`) VALUES
-('NM0001', '2018-07-19', 'ND0001', 'Gak cocok di darat', 'DK0001'),
-('NM0002', '2018-07-19', 'ND0002', 'Gejala Tipes', 'DK0001'),
-('NM0003', '2018-07-19', 'ND0003', 'Kurang Jajan', 'DK0001');
+('NM0001', '2018-07-21', 'ND0001', 'asd', 'DK0001'),
+('NM0002', '2018-07-21', 'ND0002', '', 'DK0001');
 
 -- --------------------------------------------------------
 
@@ -307,17 +322,18 @@ CREATE TABLE `trsuratrujukan` (
   `norujukan` varchar(6) NOT NULL,
   `tglrujukan` date NOT NULL,
   `nomedis` varchar(6) NOT NULL,
-  `nodaftar` varchar(6) NOT NULL
+  `nodaftar` varchar(6) NOT NULL,
+  `nmrumahsakit` varchar(50) NOT NULL,
+  `spesialis` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `trsuratrujukan`
 --
 
-INSERT INTO `trsuratrujukan` (`norujukan`, `tglrujukan`, `nomedis`, `nodaftar`) VALUES
-('RJ0001', '2018-07-20', 'NM0001', 'ND0001'),
-('RJ0002', '2018-07-20', 'NM0002', 'ND0002'),
-('RJ0003', '2018-07-20', 'NM0003', 'ND0003');
+INSERT INTO `trsuratrujukan` (`norujukan`, `tglrujukan`, `nomedis`, `nodaftar`, `nmrumahsakit`, `spesialis`) VALUES
+('RJ0001', '2018-07-21', 'NM0001', 'ND0001', 'RS. Bunda Delima', 'Poli Bedah'),
+('RJ0002', '2018-07-21', 'NM0002', 'ND0002', 'RS. Sari Asih', 'Poli Jantung');
 
 -- --------------------------------------------------------
 
@@ -340,7 +356,8 @@ CREATE TABLE `trsuratsakit` (
 --
 
 INSERT INTO `trsuratsakit` (`nosuratsakit`, `tglsuratsakit`, `nomedis`, `nodaftar`, `tglawal`, `tglakhir`, `lamahari`) VALUES
-('NS0001', '2018-07-20', 'NM0002', 'ND0002', '2018-07-20', '2018-07-23', '3');
+('NS0001', '2018-07-20', 'NM0002', 'ND0002', '2018-07-20', '2018-07-23', '3'),
+('NS0002', '2018-07-21', 'NM0001', 'ND0001', '2018-07-21', '2018-07-22', '1');
 
 --
 -- Indexes for dumped tables
@@ -369,12 +386,6 @@ ALTER TABLE `dbpetugas`
 --
 ALTER TABLE `dbtindakan`
   ADD PRIMARY KEY (`kdtindakan`);
-
---
--- Indexes for table `trkwitansi`
---
-ALTER TABLE `trkwitansi`
-  ADD PRIMARY KEY (`nokwi`);
 
 --
 -- Indexes for table `trmedis`
