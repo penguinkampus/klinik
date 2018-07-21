@@ -7,34 +7,40 @@
 		<a class="btn" href="kwitansi.php"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>
 
 <?php
-$no_kwitansi	= mysql_real_escape_string($_GET['no_kwitansi']);
-$det					= mysql_query("SELECT * FROM kwitansi a JOIN spsk b ON a.no_spsk = b.no_spsk JOIN penyewa c ON b.id_penyewa = c.id_penyewa WHERE no_kwitansi='$no_kwitansi'")or die(mysql_error());
+$nokwitansi	= mysql_real_escape_string($_GET['nokwitansi']);
+$det = mysql_query("SELECT * FROM trkwitansi a JOIN trmedis b ON a.nomedis = b.nomedis
+					JOIN trdaftar c ON b.nodaftar = c.nodaftar
+					JOIN dbpasien d ON c.kdpasien = d.kdpasien
+					JOIN detail_obat e ON b.nomedis = e.nomedis
+					JOIN detail_tindakan f ON b.nomedis = f.nomedis 
+					WHERE nokwitansi='$nokwitansi'
+					")or die(mysql_error());
 while($d=mysql_fetch_array($det)){
 	?>
 	<table class="table">
 		<tr>
 			<th class="col-md-3">No. Kwitansi</th>
-			<td><?php echo $d['no_kwitansi'] ?></td>
+			<td><?php echo $d['nokwitansi'] ?></td>
 		</tr>
 		<tr>
 			<th class="col-md-3">Tanggal Kwitansi</th>
-			<td><?php echo $d['tgl_kwitansi'] ?></td>
+			<td><?php echo $d['tglkwitansi'] ?></td>
 		</tr>
 		<tr>
-			<th class="col-md-3">No. SPSK</th>
-			<td><?php echo $d['no_spsk'] ?></td>
+			<th class="col-md-3">Nama Pasien</th>
+			<td><?php echo $d['nmpasien'] ?></td>
 		</tr>
 		<tr>
-			<th class="col-md-3">Lama Sewa</th>
-			<td><?php echo $d['lama_sewa'] ?> hari</td>
+			<th class="col-md-3">Pembayaran Obat</th>
+			<td><?php echo $d['nmobat'] ?></td>
+		</tr>
+		<tr>
+			<th class="col-md-3">Pembayaran Tindakan</th>
+			<td><?php echo $d['nmtindakan'] ?></td>
 		</tr>
 		<tr>
 			<th class="col-md-3">Total Harga</th>
 			<td>Rp. <?php echo $d['subtotal'] ?></td>
-		</tr>
-		<tr>
-			<th class="col-md-3">Nama Penyewa</th>
-			<td><?php echo $d['nama_penyewa'] ?></td>
 		</tr>
 	</table>
 	<?php
