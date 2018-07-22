@@ -1,59 +1,73 @@
-<?php
-include '../koneksi.php';
-?>
-    <div id="page-wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h3 class="page-header"><span class="glyphicon glyphicon-briefcase"></span> Cetak Surat Resep</h3>
-              <!--   <a href="tambah-resep.php" style="margin-bottom:20px" class="btn btn-info col-md-2"><span class="glyphicon glyphicon-plus"></span> Tambah Surat Resep</a> -->
-            </div>
-            <!-- /.col-lg-12 -->
-        </div>
-        <!-- /.row -->
-        <div class="row">
-            <div class="col-lg-12">
-                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                    <thead>
-                        <tr>
-                        <!--     <th>No. Resep</th> -->
-                            <th>No. Rekam Medis</th>
-                            <th>No. Daftar</th>
-                            <th>Tanggal Resep</th>
-                            <th>Opsi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                          $get = mysql_query("SELECT * FROM trmedis a 
-                                            JOIN trdaftar b ON a.nodaftar = b.nodaftar 
-                                            JOIN dbpasien c ON b.kdpasien = c.kdpasien
-                                            JOIN dbdokter d ON a.kddokter = d.kddokter");
-                          while ($tampil=mysql_fetch_array($get)) {
-                        ?>
-                            <tr>
-                               <!--  <td>
-                                    <?php echo $tampil['noresep']; ?>
-                                </td> -->
-                                <td>
-                                    <?php echo $tampil['nomedis']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $tampil['nodaftar']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $tampil['tglmedis']; ?>
-                                </td>
-                                <td align="center">
-                                    <a href="det-resep.php?nomedis=<?php echo $tampil['nomedis'] ?>" class="btn btn-info btn-sm">Detail</a>
-                                </td>
-                            </tr>
-                            <?php } ?>
-                    </tbody>
-                </table>
-                <!-- /.table-responsive -->
-            </div>
-            <!-- /.col-lg-12 -->
-        </div>
-        <!-- /.row -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Transaksi Surat Resep - Klinik</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../dist/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link href="../dist/css/github.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <link href="../vendor/bootstrap-toggle/doc/stylesheet.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <?php include 'header.php'; ?>
+
+            <?php include 'nav.php'; ?>
+
+                <?php include '../view/resep.php'; ?>
     </div>
-    <!-- /#page-wrapper -->
+    <!-- /#wrapper -->
+
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="../vendor/raphael/raphael.min.js"></script>
+    <script src="../vendor/morrisjs/morris.min.js"></script>
+    <script src="../vendor/bootstrap-toggle/doc/script.js"></script>
+    <script src="../dist/js/morris-data.js"></script>
+    <script src="../dist/js/bootstrap-toggle.min.js"></script>
+    <script src="../dist/js/highlight.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#dataTables-example').DataTable({
+                responsive: true
+            });
+        });
+    </script>
+
+</body>
+
+</html>
