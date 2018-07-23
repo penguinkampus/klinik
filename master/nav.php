@@ -66,10 +66,10 @@
                         <a class='nav-link' href='../laporan/lappendapatan.php'><i class='fa fa-edit'></i> Cetak Lap. Pendapatan</a>
                     </li>
                     <li class='nav-item'>
-                        <a class='nav-link' href='../laporan/laprekapobat.php'><i class='fa fa-edit'></i> Laporan Rekapitulasi Obat</a>
+                        <a class='nav-link' href='../laporan/laprekapobat.php'><i class='fa fa-edit'></i> Laporan Rekap Obat</a>
                     </li>
                     <li class='nav-item'>
-                        <a class='nav-link' href='../laporan/laprekapmedis.php'><i class='fa fa-edit'></i> Laporan Rekapitulasi Rekam Medis</a>
+                        <a class='nav-link' href='../laporan/laprekapmedis.php'><i class='fa fa-edit'></i> Laporan Rekap Rekam Medis</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
