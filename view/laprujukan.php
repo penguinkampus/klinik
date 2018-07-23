@@ -6,9 +6,10 @@ if (isset($_POST['submit'])) {
   $tgl_akhir  = $_POST['tgl_akhir'];
 
   $simpan = mysql_query("
-      SELECT * from trdaftar a
-      JOIN dbpasien b ON a.kdpasien = b.kdpasien
-      WHERE a.tgldaftar >= '$tgl_awal' AND a.tgldaftar <= 'tgl_akhir'");
+        SELECT * from trsuratrujukan a
+      JOIN trdaftar b ON a.nodaftar = b.nodaftar
+      JOIN dbpasien c ON b.kdpasien = c.kdpasien
+      WHERE a.tglrujukan >= '$tgl_awal' AND a.tglrujukan <= 'tgl_akhir'");
   if ($simpan) {
     echo "<script>alert('Laporan Penyewaan Siap di Cetak!');window.location='cetaklaprujukan.php?tgl_awal=$tgl_awal&&tgl_akhir=$tgl_akhir';</script>";
   } else {
