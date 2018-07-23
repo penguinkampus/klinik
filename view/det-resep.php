@@ -3,7 +3,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h3><span class="glyphicon glyphicon-list-alt"></span>  Detail Rekam Medis</h3>
+                <h3><span class="glyphicon glyphicon-list-alt"></span>  Detail Surat Resep</h3>
                 <a class="btn pull-right" href="resep.php"><span class="glyphicon glyphicon-print"></span>  Cetak</a>
                 <a class="btn pull-right" href="resep.php"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>
 
