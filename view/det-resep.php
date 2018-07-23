@@ -1,82 +1,92 @@
-<?php
-session_start();
-if (isset($_SESSION['login_user'])) {
-?>
-    <!DOCTYPE html>
-    <html lang="en">
+<?php include '../koneksi.php'; ?>
 
-    <head>
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3><span class="glyphicon glyphicon-list-alt"></span>  Detail Rekam Medis</h3>
+                <a class="btn pull-right" href="resep.php"><span class="glyphicon glyphicon-print"></span>  Cetak</a>
+                <a class="btn pull-right" href="resep.php"><span class="glyphicon glyphicon-arrow-left"></span>  Kembali</a>
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
+            </br>
 
-        <title>Detail Resep - Klinik</title>
-        <!-- Bootstrap Core CSS -->
-        <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-        <link href="../dist/css/bootstrap-toggle.min.css" rel="stylesheet">
-        <link href="../dist/css/github.min.css" rel="stylesheet">
-        <link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-        <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-        <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
-        <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-        <link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
-        <link href="../vendor/bootstrap-toggle/doc/stylesheet.css" rel="stylesheet">
+                <?php
+                $nomedis = mysql_real_escape_string($_GET['nomedis']);
+                $detail	= mysql_fetch_array(mysql_query("SELECT * FROM trmedis a JOIN trdaftar b ON a.nodaftar = b.nodaftar
+                                                        JOIN dbpasien c ON b.kdpasien = c.kdpasien
+                                                        JOIN dbdokter d ON a.kddokter = d.kddokter 
+                                                        WHERE a.nomedis='$nomedis'"));	
+                ?>
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]-->
-    </head>
+                    <div class="form-group row">
+                        <label class="col-md-2 form-control-label" for="text-input">No. Rekam Medis</label>
+                        <div class="col-md-3">
+                            <input type="text" id="nomedis" name="nomedis" class="form-control" placeholder="No. SPSK" value="<?php echo $detail['nomedis'] ?>" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 form-control-label" for="text-input">Tanggal Rekam Medis</label>
+                        <div class="col-md-4">
+                            <input type='text' id="no_spsk" name="no_spsk" class="form-control" placeholder="Tanggal SPSK" value="<?php echo $detail['tglmedis'] ?>" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 form-control-label" for="text-input">No. Daftar</label>
+                        <div class="col-md-5">
+                            <input type='text' id="no_spsk" name="no_spsk" class="form-control" placeholder="Nama Penyewa" value="<?php echo $detail['nodaftar'] ?>" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 form-control-label" for="text-input">Nama Pasien</label>
+                        <div class="col-md-2">
+                            <input type='text' id="no_spsk" name="no_spsk" class="form-control" placeholder="Lama Sewa" value="<?php echo $detail['nmpasien'] ?>" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 form-control-label" for="text-input">Umur</label>
+                        <div class="col-md-3">
+                            <input type='text' id="no_spsk" name="no_spsk" class="form-control" placeholder="Jam Keluar" value="<?php echo $detail['umur'] ?>" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 form-control-label" for="text-input">Keluhan</label>
+                        <div class="col-md-2">
+                            <input type='text' id="no_spsk" name="no_spsk" class="form-control" placeholder="Jenis Bayar" value="<?php echo $detail['keluhan'] ?>" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 form-control-label" for="text-input">Nama Dokter</label>
+                        <div class="col-md-4">
+                            <input type='text' id="no_spsk" name="no_spsk" class="form-control" placeholder="Total Harga" value="<?php echo $detail['nmdokter'] ?>" readonly>
+                        </div>
+                    </div>
 
-    <body>
+                 
 
-        <div id="wrapper">
-
-            <?php include 'header.php'; ?>
-
-                <?php include 'nav.php'; ?>
-
-                    <?php include '../view/det-resep.php'; ?>
+                    <table width="100%" class="table table">
+                        <tr align="center">
+                            <td align="center"><b>Kode Obat</b></td>
+                            <td align="center"><b>Nama Obat</b></td>
+                            <td align="center"><b>Harga Obat</b></td>
+                        </tr>
+                        <?php
+                        $nomedis = mysql_real_escape_string($_GET['nomedis']);
+                        $det = mysql_query("SELECT * FROM trmedis a 
+                                            JOIN detail_obat b ON a.nomedis = b.nomedis
+                                            JOIN dbobat c ON b.kdobat = c.kdobat WHERE a.nomedis='$nomedis'")or die(mysql_error());
+                        while($d=mysql_fetch_array($det)){
+                        ?>
+                            <tr>
+                                <td align="center">
+                                    <?php echo $d['kdobat'] ?>
+                                </td>
+                                <td align="center">
+                                    <?php echo $d['nmobat'] ?>
+                                </td>
+                                <td align="center">
+                                    <?php echo $d['harga'] ?>
+                                </td>
+                            </tr>
+                            <?php	} ?>
+                    </table>
+            </div>
         </div>
-        <!-- /#wrapper -->
-
-        <script src="../vendor/jquery/jquery.min.js"></script>
-        <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-        <script src="../vendor/metisMenu/metisMenu.min.js"></script>
-        <script src="../vendor/raphael/raphael.min.js"></script>
-        <script src="../vendor/morrisjs/morris.min.js"></script>
-        <script src="../vendor/bootstrap-toggle/doc/script.js"></script>
-        <script src="../dist/js/morris-data.js"></script>
-        <script src="../dist/js/bootstrap-toggle.min.js"></script>
-        <script src="../dist/js/highlight.min.js"></script>
-
-        <!-- Custom Theme JavaScript -->
-        <script src="../dist/js/sb-admin-2.js"></script>
-
-        <!-- DataTables JavaScript -->
-        <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
-        <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-        <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
-
-        <script>
-            $(document).ready(function() {
-                $('#dataTables-example').DataTable({
-                    responsive: true
-                });
-            });
-        </script>
-
-    </body>
-
-    </html>
-    <?php
-} else {
-  header("location: ../pages/login.php");
-}
-?>
