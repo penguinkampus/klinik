@@ -31,13 +31,13 @@ if (isset($_POST['submit'])) {
   $keluhan    = ucwords($_POST['keluhan']);
 
   $simpan   = mysql_query("INSERT INTO trdaftar VALUES (
-                          '$nodaftar'
-                          , '$kdpasien'
-                          , '$tgldaftar'
-                          , '$nmpasien'
-                          , '$goldarah'
-                          , '$umur'
-                          , '$keluhan'
+                          '$nodaftar',
+                          '$tgldaftar',
+                          '$kdpasien',
+                          '$nmpasien',
+                          '$goldarah',
+                          '$umur',
+                          '$keluhan'
                           )");
 
   if ($simpan) {
@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) {
                 <div class="form-group row">
                   <label class="col-md-2 form-control-label" for="text-input">Kode Pasien</label>
                   <div class="col-md-3">
-                    <input type="text" id="kdpasien" name="kdpasien" class="form-control" placeholder="Kode Pasien" readonly>
+                    <input type="text" id="kdpasien" name="kdpasien" class="form-control" placeholder="Kode Pasien" readonly required>
                   </div>
                   <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2">CARI</button>
                 </div>
@@ -109,7 +109,7 @@ if (isset($_POST['submit'])) {
                 <div class="form-group row">
                   <label class="col-md-2 form-control-label" for="text-input">Keluhan</label>
                   <div class="col-md-5">
-                    <textarea rows="3" type="text" id="keluhan" name="keluhan" class="form-control" placeholder="Keluhan"></textarea>
+                    <textarea rows="3" type="text" id="keluhan" name="keluhan" class="form-control" placeholder="Keluhan" required></textarea>
                   </div>
                 </div>
 
