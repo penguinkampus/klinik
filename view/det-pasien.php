@@ -29,6 +29,10 @@ while($d=mysql_fetch_array($det)){
 			<td><?php echo $d['alamat'] ?></td>
 		</tr>
 		<tr>
+			<th class="col-md-3">Pekerjaan</th>
+			<td><?php echo $d['pekerjaan'] ?></td>
+		</tr>
+		<tr>
 			<th class="col-md-3">Golongan Darah</th>
 			<td><?php echo $d['goldarah'] ?></td>
 		</tr>
