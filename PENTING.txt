@@ -1,0 +1,8 @@
+1. Leveling belum diimplementasikan karna kondisi masih 1 dokter dan 2 apoteker
+2. Kadaluarsa belum diimplementasikan karna belum tau kodingannya dn bisa dilihat secara manual oleh apoteker
+3. Di table TRMEDIS tindakan dan obat ditempatkan atas karna ketika saving penambahan selalu refresh dan tidak menggunakan ajax, jadi harus di input lebih dulu
+
+Belom:
+1. Cetak Resep
+2. Pengurangan Stock Obat
+3. Antrian
