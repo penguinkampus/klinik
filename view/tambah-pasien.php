@@ -23,31 +23,26 @@ function autonumber($tabel, $kolom, $lebar=0, $awalan='')
 
 // Simpan
 if (isset($_POST['submit'])) {
-  $kdpasien     = $_POST['kdpasien'];
-  $nmpasien     = ucwords($_POST['nmpasien']);
-  $tgllahir     = $_POST['tgllahir'];
-  $alamat       = ucwords($_POST['alamat']);
-  $goldarah     = $_POST['goldarah'];
-  $jnskelamin   = $_POST['jnskelamin'];
-  $umur         = $_POST['umur'];
-  $notelp       = $_POST['notelp'];
+  $kdpasien = $_POST['kdpasien'];
+  $nmpasien = ucwords($_POST['nmpasien']);
+  $tgllahir = $_POST['tgllahir'];
+  $alamat = ucwords($_POST['alamat']);
+  $pekerjaan = ucwords($_POST['pekerjaan']);
+  $goldarah = $_POST['goldarah'];
+  $jnskelamin = $_POST['jnskelamin'];
+  $umur = $_POST['umur'];
+  $notelp  = $_POST['notelp'];
   
-
-  // $cekno = mysql_query("SELECT * FROM pasien WHERE no_ktpsim = '$no_ktpsim'");  
-  // if (mysql_num_rows($cekno) <> 0) {
-  //   echo "<script>alert('pasien Sudah di Input!');window.location='tambah-pasien.php';</script>";
-  // } else {
-  //   $simpan = mysql_query("INSERT INTO pasien VALUES ('$id_pasien', '$nama_pasien', '$no_ktpsim', '$jenkel', '$alamat', '$no_telp', '$email')");
-  // }
   $simpan = mysql_query("INSERT INTO dbpasien VALUES (
-                          '$kdpasien' 
-                          , '$nmpasien'
-                          , '$tgllahir'
-                          , '$alamat'
-                          , '$goldarah'
-                          , '$jnskelamin'
-                          , '$umur'
-                          , '$notelp'
+                          '$kdpasien',
+                          '$nmpasien',
+                          '$tgllahir',
+                          '$alamat',
+                          '$pekerjaan',
+                          '$goldarah',
+                          '$jnskelamin',
+                          '$umur',
+                          '$notelp'
                         )");
 
   if ($simpan) {
@@ -100,6 +95,12 @@ if (isset($_POST['submit'])) {
                   </div>
                 </div>
                 <div class="form-group row">
+                  <label class="col-md-2 form-control-label" for="text-input">Pekerjaan</label>
+                  <div class="col-md-4">
+                    <input type="text" id="text-input" name="pekerjaan" class="form-control" placeholder="Pekerjaan" maxlength="30">
+                  </div>
+                </div>
+                <div class="form-group row">
                   <label class="col-md-2 form-control-label" for="text-input">Golongan Darah</label>
                   <div class="col-md-2">
                     <input type="text" id="text-input" name="goldarah" class="form-control" placeholder="Golongan Darah" maxlength="2">
@@ -125,7 +126,6 @@ if (isset($_POST['submit'])) {
                   <label class="col-md-2 form-control-label" for="text-input">No. Telepon</label>
                   <div class="col-md-3">
                     <input type="text" id="text-input" name="notelp" class="form-control" placeholder="Nomor Telepon" maxlength="12" onkeyup="validAngka(this)" required>
-                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                   </div>
                 </div>
                 
@@ -158,13 +158,5 @@ if (isset($_POST['submit'])) {
     }
   }
 
-  //valiadasi huruf
-//   function validHuruf(a)
-//   {
-//     if(!/^[a-zA-Z]+$/.test(a.value))
-//     {
-//       a.value = a.value.substring(0,a.value.length-1000);
-//     }
-//   }
 </script>
 <!--End of Code JS Validation-->
