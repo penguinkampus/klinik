@@ -2,6 +2,29 @@
 include '../koneksi.php';
 
 ?>
+<?php function Terbilang($satuan)
+{
+$huruf = array("", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas");
+if ($satuan < 12)
+return " " . $huruf[$satuan];
+elseif ($satuan < 20)
+return Terbilang($satuan - 10) . "Belas";
+elseif ($satuan < 100)
+return Terbilang($satuan / 10) . " Puluh" . Terbilang($satuan % 10);
+elseif ($satuan < 200)
+return " Seratus" . Terbilang($satuan - 100);
+elseif ($satuan < 1000)
+return Terbilang($satuan / 100) . " Ratus" . Terbilang($satuan % 100);
+elseif ($satuan < 2000)
+return " Seribu" . Terbilang($satuan - 1000);
+elseif ($satuan < 1000000)
+return Terbilang($satuan / 1000) . " Ribu" . Terbilang($satuan % 1000);
+elseif ($satuan < 1000000000)
+return Terbilang($satuan / 1000000) . " Juta" . Terbilang($satuan % 1000000);
+elseif ($satuan <= 1000000000)
+echo "Maaf Tidak Dapat di Prose Karena Jumlah Uang Terlalu Besar ";
+}
+?>
 <div id="page-wrapper">
   <div class='row'>
     <div class='col-lg-12'>
@@ -54,6 +77,7 @@ while ($tampil=mysql_fetch_array($get)) {
 </div>
 
 <table width="100%" border="1" cellspacing="0">
+  <br>
   <tr>
     <td align="center"><b>No.</b></td>
     <td align="center"><b>Pembayaran Obat</b></td>
@@ -103,6 +127,11 @@ while ($tampil=mysql_fetch_array($get)) {
     <td><b>S U B T O T A L</b></td>
     <td align="center"><b>Rp. <?php echo $tampil['subtotal']; ?></b></td>
   </tr>
+  <tr>
+    <td><b>T E R B I L A N G</b></td>
+    <td><b><?php echo Terbilang($tampil['subtotal']); ?></b></td>
+  </tr>
+
 </table>
 <br>
 
