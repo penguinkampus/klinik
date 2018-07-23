@@ -2,17 +2,17 @@
 include '../koneksi.php';
 
 if (isset($_POST['submit'])) {
-  $tgl_awal   = $_POST['tgl_awal'];
-  // $tgl_akhir  = $_POST['tgl_akhir'];
+  $tahun   = $_POST['tahun'];
 
-  $simpan = mysql_query("
-      SELECT * from trdaftar a
-      -- JOIN dbpasien b ON a.kdpasien = b.kdpasien
-      WHERE a.tgldaftar <= '$tgl_awal' ");
+  $simpan = mysql_query("SELECT a.diagnosa,
+                          COUNT(a.diagnosa) AS total
+                          FROM trmedis a JOIN trdaftar b ON a.nodaftar = b.nodaftar JOIN dbpasien c ON b.kdpasien = c.kdpasien
+                          WHERE YEAR(a.tglmedis) = '$tahun'
+                          GROUP BY a.diagnosa");
   if ($simpan) {
-    echo "<script>alert('Laporan Penyewaan Siap di Cetak!');window.location='cetaklaprekapmedis.php?tgl_awal=$tgl_awal';</script>";
+    echo "<script>alert('Laporan Rekapitulasi Rekam Medis Siap di Cetak!');window.location='cetaklaprekapmedis.php?tahun=$tahun';</script>";
   } else {
-    echo "<script>alert('Laporan Penyewaan Gagal di Cetak!');window.location='laprekapmedis.php';</script>";
+    echo "<script>alert('Laporan Rekapitulasi Rekam Medis Gagal di Cetak!');window.location='laprekapmedis.php';</script>";
   }
 }
 ?>
@@ -28,9 +28,18 @@ if (isset($_POST['submit'])) {
     <div class="col-lg-12">
       <form action="" method="POST" enctype="multipart/form-data" class="form-horizontal">
         <div class="form-group row">
-          <label class="col-md-2 form-control-label" for="text-input">Tanggal Periode</label>
+          <label class="col-md-2 form-control-label" for="text-input">Tahun</label>
           <div class="col-md-3">
-            <input type="date" id="tgl_awal" name="tgl_awal" class="form-control" required>
+          <select id="tahun" name="tahun" class="form-control">
+              <script>
+              //menampilkan tahun
+              var date  = new Date();
+              var tahun = date.getFullYear();
+              for (var i = 2017; i < tahun+1; i++) {
+                document.write('<option value="'+i+'">'+i+'</option>');
+              }
+              </script>
+            </select>
           </div>
         </div>
      
@@ -47,14 +56,3 @@ if (isset($_POST['submit'])) {
 </div>
 <!-- /#page-wrapper -->
 
-<!--Code JS Validation-->
-<script language='javascript'>
-function validAngka(a)
-{
-  if(!/^[0-9.]+$/.test(a.value))
-  {
-    a.value = a.value.substring(0,a.value.length-1000);
-  }
-}
-</script>
-<!--End of Code JS Validation-->
