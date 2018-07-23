@@ -43,27 +43,29 @@ include '../koneksi.php';
 <table width="100%" border="1" cellspacing="0">
   <tr>
     <td align="center"><b>No.</b></td>
-    <td align="center"><b>No. SPSK</b></td>
-    <td align="center"><b>Tanggal SPSK</b></td>
-    <td align="center"><b>Nama Penyewa</b></td>
-    <td align="center"><b>No. KTP/SIM</b></td>
-    <td align="center"><b>Alamat</b></td>
-    <td align="center"><b>Merk Mobil</b></td>
-    <td align="center"><b>No. Polisi</b></td>
-    <td align="center"><b>Lama Sewa</b></td>
-    <td align="center"><b>Tanggal Keluar</b></td>
-    <td align="center"><b>Pembayaran</b></td>
+    <td align="center"><b>Tanggal Surat Rujukan</b></td>
+    <td align="center"><b>Rumah Sakit</b></td>
+    <td align="center"><b>Spesialis</b></td>
+    <td align="center"><b>Nama Pasien</b></td>
+    <td align="center"><b>Usia</b></td>
     <td align="center"><b>Jenis Kelamin</b></td>
+    <td align="center"><b>Alamat</b></td>
+    <td align="center"><b>Keluhan</b></td>
+    <td align="center"><b>Diagnosa</b></td>
+    <td align="center"><b>Pengobatan</b></td>
+    
   </tr>
   <tr>
     <?php
     $no = 1;
    
     $get = mysql_query("
-           SELECT * from trdaftar a
-      JOIN dbpasien b ON a.kdpasien = b.kdpasien
+               SELECT * from trsuratrujukan a
+      JOIN trdaftar b ON a.nodaftar = b.nodaftar
+      JOIN dbpasien c ON b.kdpasien = c.kdpasien
+       JOIN trmedis d on a.nomedis = d.nomedis
 
-     WHERE a.tgldaftar >= '$date1' AND a.tgldaftar <= '$date2'");
+     WHERE a.tglrujukan >= '$date1' AND a.tglrujukan <= '$date2'");
     while ($tampil=mysql_fetch_array($get)) {
     ?>
     <td align="center">
@@ -73,10 +75,17 @@ include '../koneksi.php';
       ?></td>
     <td align="center">
       <?php 
-          echo $tampil['nodaftar'];
+          echo $tampil['tglrujukan'];
    
       ?></td>
-    <td><?php echo $tampil['kdpasien']; ?></td>
+    <td><?php echo $tampil['nmrumahsakit']; ?></td>
+    <td><?php echo $tampil['spesialis']; ?></td>
+    <td><?php echo $tampil['nmpasien']; ?></td>
+    <td><?php echo $tampil['umur']; ?></td>
+    <td><?php echo $tampil['jnskelamin']; ?></td>
+    <td><?php echo $tampil['alamat']; ?></td>
+    <td><?php echo $tampil['keluhan']; ?></td>
+    <td><?php echo $tampil['diagnosa']; ?></td>
    </tr>
   <?php  } ?>
 </table>
