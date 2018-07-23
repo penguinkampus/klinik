@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
 <div id="page-wrapper">
   <div class='row'>
     <div class='col-lg-12'>
-      <h3 class="page-header"><span class="glyphicon glyphicon-file"></span> Cetak Laporan Rujukan</h3>
+      <h3 class="page-header"><span class="glyphicon glyphicon-file"></span> Cetak Laporan Surat Rujukan</h3>
     </div>
   </div>
 
