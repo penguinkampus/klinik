@@ -59,6 +59,7 @@ include '../koneksi.php';
       JOIN trdaftar b ON a.nodaftar = b.nodaftar
       JOIN dbpasien c ON b.kdpasien = c.kdpasien
        JOIN trmedis d on a.nomedis = d.nomedis
+       JOIN detail_tindakan e ON d.nomedis = e.nomedis
 
      WHERE a.tglrujukan >= '$date1' AND a.tglrujukan <= '$date2'");
     while ($tampil=mysql_fetch_array($get)) {
@@ -81,6 +82,7 @@ include '../koneksi.php';
     <td><?php echo $tampil['alamat']; ?></td>
     <td><?php echo $tampil['keluhan']; ?></td>
     <td><?php echo $tampil['diagnosa']; ?></td>
+    <td><?php echo $tampil['nmtindakan']; ?></td>
    </tr>
   <?php  } ?>
 </table>
