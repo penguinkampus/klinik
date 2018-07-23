@@ -11,9 +11,9 @@ if (isset($_POST['submit'])) {
       JOIN dbpasien c ON b.kdpasien = c.kdpasien
       WHERE a.tglsuratsakit = '$tgl_awal' AND a.tglsuratsakit = 'tgl_akhir'");
   if ($simpan) {
-    echo "<script>alert('Laporan Penyewaan Siap di Cetak!');window.location='cetaklapsuratsakit.php?tgl_awal=$tgl_awal&&tgl_akhir=$tgl_akhir';</script>";
+    echo "<script>alert('Laporan Surat Sakit Siap di Cetak!');window.location='cetaklapsuratsakit.php?tgl_awal=$tgl_awal&&tgl_akhir=$tgl_akhir';</script>";
   } else {
-    echo "<script>alert('Laporan Penyewaan Gagal di Cetak!');window.location='lapsuratsakit.php';</script>";
+    echo "<script>alert('Laporan Surat Sakit Gagal di Cetak!');window.location='lapsuratsakit.php';</script>";
   }
 }
 ?>
