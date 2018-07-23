@@ -53,7 +53,7 @@ Chrome 35+, Firefox 31+, Safari 7+, IE 10+
   - Finishing 65%
 - v0.9.2 (July 23, 2018)
   - Bug Fixing
-  - Finishing 85%
+  - Finishing 90%
 
 ## Copyright and License
 Copyright 2018 Muhammad Iqbal Pamungkas. Code released under the [MIT](https://github.com/penguinkampus/UnderConstruction/blob/master/LICENSE) license.
