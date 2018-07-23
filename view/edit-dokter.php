@@ -11,14 +11,14 @@ if (isset($_POST['submit'])) {
   $notelp       = $_POST['notelp'];
 
   $update = mysql_query("UPDATE dbdokter SET 
-                        kddokter    ='$kddokter'
-                        , nmdokter  ='$nmdokter'
-                        , tgllahir  ='$tgllahir'
+                          kddokter ='$kddokter'
+                        , nmdokter ='$nmdokter'
+                        , tgllahir ='$tgllahir'
                         , spesialis ='$spesialis'
-                        , jnskelamin='$jnskelamin'
-                        , alamat    ='$alamat'
-                        , notelp    ='$notelp'
-                        ");
+                        , jnskelamin ='$jnskelamin'
+                        , alamat ='$alamat'
+                        , notelp ='$notelp'
+                        WHERE kddokter='$kddokter'");
   if ($update) {
     echo "<script>alert('Data BERHASIL di Update!');window.location='dokter.php';</script>";
   } else {
