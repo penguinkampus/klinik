@@ -31,9 +31,6 @@ include '../koneksi.php';
                           while ($tampil=mysql_fetch_array($get)) {
                         ?>
                             <tr>
-                               <!--  <td>
-                                    <?php echo $tampil['noresep']; ?>
-                                </td> -->
                                 <td>
                                     <?php echo $tampil['nomedis']; ?>
                                 </td>
@@ -57,3 +54,4 @@ include '../koneksi.php';
         <!-- /.row -->
     </div>
     <!-- /#page-wrapper -->
+    
