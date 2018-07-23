@@ -16,12 +16,7 @@ include '../koneksi.php';
     <div class="col-lg-12">
       <div id="area-1">
         <div>
-          <div align="left">
-            <img src="../img/cop.jpg" width="400px" alt="Logo Artha Laras"/><br>
-            <!-- Jl. Dr. Ciptomangunkusumo, No. 11, Ciledug - Tangerang 15153,<br>
-            Telp: 021-7319980 / 0812-1341-1361 <br><br> -->
-          </div>
-          <div align="right">
+          <div align="center">
             <b><u>KWITANSI</u></b>
           </div>
         </div>
@@ -56,11 +51,6 @@ while ($tampil=mysql_fetch_array($get)) {
     <td>:</td>
     <td>Rp. <?php echo $tampil['subtotal']; ?></td>
   </tr>
-  <tr>
-    <td><b>Pembayaran</b></td>
-    <td>:</td>
-    <td>Bank BCA 54907111696 a/n Dwi Patdianto</td>
-  </tr>
 </div>
 
 <table width="100%" border="1" cellspacing="0">
@@ -74,13 +64,6 @@ while ($tampil=mysql_fetch_array($get)) {
   <tr>
     <?php
     $no = 1;
-    // $get = mysql_query("SELECT * FROM trkwitansi a JOIN trmedis b ON a.nomedis = b.nomedis 
-    //                     JOIN trdaftar c ON b.nodaftar = c.nodaftar
-    //                     JOIN dbpasien d ON c.kdpasien = d.kdpasien
-    //                     JOIN detail_obat e ON b.nomedis = e.nomedis
-    //                     JOIN detail_tindakan f ON b.nomedis = f.nomedis
-    //                     WHERE a.nokwitansi = '$nokwitansi'
-    //                   ");
 
     $get = mysql_query ("
     SELECT *,e.harga as hargaobat, f.harga as hargatindakan FROM trkwitansi a JOIN trmedis b ON a.nomedis = b.nomedis 
@@ -125,14 +108,9 @@ while ($tampil=mysql_fetch_array($get)) {
 
 <table width="100%" border="0" height="150px">
   <tr>
-    <td align="center" width="250px"><b>Penyewa</b></td>
+    <td align="center" width="250px"><b>Pasien</b></td>
     <th></th>
-    <td align="center" width="250px"><b>Staff Admin</b></td>
-  </tr>
-  <tr>
-    <td align="center"></td>
-    <td align="center"><b><i>Terima Kasih,</b><br>Sudah Memakai Jasa Kami.</i></td>
-    <td align="center"></td>
+    <td align="center" width="250px"><b>Admin</b></td>
   </tr>
   <tr>
     <td align="center">( <?php echo $tampil['nmpasien']; ?> )</td>
