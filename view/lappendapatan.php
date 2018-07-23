@@ -13,9 +13,9 @@ if (isset($_POST['submit'])) {
        GROUP BY a.nokwitansi
        ");
   if ($simpan) {
-    echo "<script>alert('Laporan Penyewaan Siap di Cetak!');window.location='cetaklappendapatan.php?tgl_awal=$tgl_awal&&tgl_akhir=$tgl_akhir';</script>";
+    echo "<script>alert('Laporan Pendapatan Siap di Cetak!');window.location='cetaklappendapatan.php?tgl_awal=$tgl_awal&&tgl_akhir=$tgl_akhir';</script>";
   } else {
-    echo "<script>alert('Laporan Penyewaan Gagal di Cetak!');window.location='lappendapatan.php';</script>";
+    echo "<script>alert('Laporan Pendapatan Gagal di Cetak!');window.location='lappendapatan.php';</script>";
   }
 }
 ?>
