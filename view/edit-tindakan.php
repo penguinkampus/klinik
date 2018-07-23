@@ -40,19 +40,19 @@ if (isset($_POST['submit'])) {
               <form action="edit-tindakan.php" method="POST">
                 <table class="table">
                   <tr>
-                    <th class="col-md-2">ID Supir</th>
+                    <th class="col-md-2">Kode Tindakan</th>
                     <td><input type="text" class="form-control" name="kdtindakan" value="<?php echo $d['kdtindakan']; ?>" readonly></td>
                   </tr>
                   <tr>
-                    <th class="col-md-2">Nama Supir</th>
+                    <th class="col-md-2">Nama Tindakan</th>
                     <td><input type="text" class="form-control" name="nmtindakan" value="<?php echo $d['nmtindakan']; ?>" maxlength="50" required></td>
                   </tr>
                   <tr>
-                    <th class="col-md-2">Alamat</th>
+                    <th class="col-md-2">Keterangan</th>
                     <td><textarea rows="3" type="text" class="form-control" name="keterangan" maxlength="80" required><?php echo $d['keterangan']; ?></textarea>
                   </tr>
                   <tr>
-                    <th class="col-md-2">No. Telp</th>
+                    <th class="col-md-2">Biaya</th>
                     <td><input type="text" class="form-control" name="harga" value="<?php echo $d['harga']; ?>" maxlength="12" onkeyup="validAngka(this)" required></td>
                   </tr>
                   
