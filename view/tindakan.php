@@ -22,17 +22,17 @@ function autonumber($tabel, $kolom, $lebar=0, $awalan='')
 
 
 if (isset($_POST['submit'])) {
-  $id_tindakan     = $_POST['kdtindakan'];
-  $nama_tindakan   = ucwords($_POST['nmtindakan']);
+  $kdtindakan = $_POST['kdtindakan'];
+  $nmtindakan = ucwords($_POST['nmtindakan']);
   $keterangan = ucwords($_POST['keterangan']);
-  $harga        = $_POST['harga'];
+  $harga = $_POST['harga'];
   
-  $cekno = mysql_query("SELECT * FROM dbtindakan WHERE nmtindakan = '$nama_tindakan'");
+  $cekno = mysql_query("SELECT * FROM dbtindakan WHERE nmtindakan = '$nmtindakan'");
 
   if (mysql_num_rows($cekno) <> 0) {
     echo "<script>alert('tindakan Sudah di Input!');window.location='tindakan.php';</script>";
   } else {
-    $simpan = mysql_query("INSERT INTO dbtindakan VALUES ('$id_tindakan', '$nama_tindakan', '$keterangan', '$harga')");
+    $simpan = mysql_query("INSERT INTO dbtindakan VALUES ('$kdtindakan', '$nmtindakan', '$keterangan', '$harga')");
 
   }
 
@@ -44,8 +44,8 @@ if (isset($_POST['submit'])) {
 }
   
 if(isset($_GET['kdtindakan'])){
-$id_tindakan = $_GET['kdtindakan'];
-mysql_query("DELETE FROM dbtindakan WHERE kdtindakan='$id_tindakan'");
+$kdtindakan = $_GET['kdtindakan'];
+mysql_query("DELETE FROM dbtindakan WHERE kdtindakan='$kdtindakan'");
 }
 ?>
 
@@ -63,8 +63,8 @@ mysql_query("DELETE FROM dbtindakan WHERE kdtindakan='$id_tindakan'");
       <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
         <thead>
           <tr>
-            <th>Kode</th>
-            <th>Nama</th>
+            <th>Kode Tindakan</th>
+            <th>Nama Tindakan</th>
             <th>Keterangan</th>
             <th>Harga</th>
             <th>Opsi</th>
@@ -105,8 +105,8 @@ mysql_query("DELETE FROM dbtindakan WHERE kdtindakan='$id_tindakan'");
         <div class="modal-body">
           <form action="tindakan.php" method="POST">
             <div class="form-group">
-              <label>ID tindakan</label>
-              <input name="kdtindakan" type="text" class="form-control" value="<?php echo autonumber("dbtindakan", "kdtindakan", 2, "SP") ?>" readonly>
+              <label>Kode tindakan</label>
+              <input name="kdtindakan" type="text" class="form-control" value="<?php echo autonumber("dbtindakan", "kdtindakan", 4, "KT") ?>" readonly>
             </div>
             <div class="form-group">
               <label>Nama tindakan</label>
@@ -117,8 +117,8 @@ mysql_query("DELETE FROM dbtindakan WHERE kdtindakan='$id_tindakan'");
               <textarea id="textarea-input" name="keterangan" rows="3" class="form-control" placeholder="Keterangan" maxlength="80" required></textarea>
             </div>
             <div class="form-group">
-              <label>Tarif</label>
-              <input name="harga" type="text" class="form-control" placeholder="Tarif" maxlength="12" onkeyup="validAngka(this)" required>
+              <label>Biaya</label>
+              <input name="harga" type="text" class="form-control" placeholder="Biaya" maxlength="12" onkeyup="validAngka(this)" required>
             </div>
 
           </div>
@@ -133,24 +133,3 @@ mysql_query("DELETE FROM dbtindakan WHERE kdtindakan='$id_tindakan'");
 </div>
 <!-- /#page-wrapper -->
 
-<!--Code JS Validation-->
-<script language='javascript'>
-  // //validasi angka
-  // function validAngka(a)
-  // {
-  //   if(!/^[0-9.]+$/.test(a.value))
-  //   {
-  //     a.value = a.value.substring(0,a.value.length-1000);
-  //   }
-  // }
-
-  // //validasi huruf
-  // function validHuruf(a)
-  // {
-  //   if(!/^[a-zA-Z]+$/.test(a.value))
-  //   {
-  //     a.value = a.value.substring(0,a.value.length-1000);
-  //   }
-  // }
-</script>
-<!--End of Code JS Validation-->
