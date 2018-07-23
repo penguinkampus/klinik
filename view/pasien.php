@@ -36,10 +36,10 @@ if (isset($_GET['kdpasien'])){
           while ($tampil=mysql_fetch_array($get)) {
           ?>
           <tr>
-            <td><?php echo $tampil['kdpasien']; ?></td>
+            <td align="center"><?php echo $tampil['kdpasien']; ?></td>
             <td><?php echo $tampil['nmpasien']; ?></td>
             <td align="center"><?php echo $tampil['tgllahir']; ?></td>
-            <td align="center"><?php echo $tampil['alamat']; ?></td>
+            <td><?php echo $tampil['alamat']; ?></td>
             <td align="center"><?php echo $tampil['jnskelamin']; ?></td>
             <td align="center">
               <a href="det-pasien.php?kdpasien=<?php echo $tampil['kdpasien']; ?>" class="btn btn-info btn-sm">Detail</a>
