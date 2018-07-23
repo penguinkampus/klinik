@@ -6,20 +6,22 @@ if (isset($_POST['submit'])) {
   $nmpasien   	  = ucwords($_POST['nmpasien']);
   $tgllahir       = $_POST['tgllahir'];
   $alamat       	= ucwords($_POST['alamat']);
+  $pekerjaan       	= ucwords($_POST['pekerjaan']);
   $goldarah			  = $_POST['goldarah'];
   $jnskelamin		  = $_POST['jnskelamin'];
   $umur           = $_POST['umur'];
   $notelp         = $_POST['notelp'];
   
   $update = mysql_query("UPDATE dbpasien SET 
-                        kdpasien  ='$kdpasien'
-                      , nmpasien  ='$nmpasien'
-                      , tgllahir  ='$tgllahir '
-                      , alamat    ='$alamat'
-                      , goldarah  ='$goldarah'
-                      , jnskelamin='$jnskelamin'
-                      , umur      ='$umur'
-                      , notelp    ='$notelp' 
+                        kdpasien ='$kdpasien'
+                      , nmpasien ='$nmpasien'
+                      , tgllahir ='$tgllahir '
+                      , alamat ='$alamat'
+                      , pekerjaan ='$pekerjaan'
+                      , goldarah ='$goldarah'
+                      , jnskelamin ='$jnskelamin'
+                      , umur ='$umur'
+                      , notelp ='$notelp' 
                       WHERE kdpasien='$kdpasien'");
   if ($update) {
     echo "<script>alert('Data BERHASIL di Update!');window.location='pasien.php';</script>";
@@ -66,6 +68,10 @@ if (isset($_POST['submit'])) {
                   <tr>
             				<th class="col-md-2">Alamat</th>
             				<td><textarea rows="3" type="text" class="form-control" name="alamat" maxlength="80" required><?php echo $d['alamat'] ?></textarea></td>
+            			</tr>
+                  <tr>
+            				<th class="col-md-2">Pekerjaan</th>
+            				<td><input type="text" class="form-control" name="pekerjaan" value="<?php echo $d['pekerjaan'] ?>" maxlength="30"></td>
             			</tr>
                   <tr>
             				<th class="col-md-2">Golongan Darah</th>
