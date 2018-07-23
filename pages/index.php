@@ -15,7 +15,7 @@ if (isset($_SESSION['login_user'])) {
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Dashboard - Klinik</title>
+        <title>Dashboard - Klinik Melinda</title>
         <!-- Bootstrap Core CSS -->
         <link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
         <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -138,17 +138,17 @@ if (isset($_SESSION['login_user'])) {
                                         </div>
                                         <div class="col-xs-9 text-right">
                                             <div class="huge">
-                                                <!-- <?php
-                    $x=mysql_query("SELECT COUNT(id_penyewa) AS Jumlah FROM penyewa");
-                    $xx=mysql_fetch_array($x);
-                    echo "<b>".$xx['Jumlah']."</b>";
-                  ?> -->
+                                                <?php
+                                                    $x=mysql_query("SELECT COUNT(kdpasien) AS Jumlah FROM dbpasien");
+                                                    $xx=mysql_fetch_array($x);
+                                                    echo "<b>".$xx['Jumlah']."</b>";
+                                                ?>
                                             </div>
                                             <div>Pasien Baru!</div>
                                         </div>
                                     </div>
                                 </div>
-                                <a href="../master/penyewa.php">
+                                <a href="../master/pasien.php">
                                     <div class="panel-footer">
                                         <span class="pull-left">View Details</span>
                                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -166,17 +166,17 @@ if (isset($_SESSION['login_user'])) {
                                         </div>
                                         <div class="col-xs-9 text-right">
                                             <div class="huge">
-                                                <!-- <?php
-                    $x=mysql_query("SELECT COUNT(id_mobil) AS Jumlah FROM mobil");
-                    $xx=mysql_fetch_array($x);
-                    echo "<b>".$xx['Jumlah']."</b>";
-                  ?> -->
+                                                <?php
+                                                    $x=mysql_query("SELECT COUNT(nomedis) AS Jumlah FROM trmedis");
+                                                    $xx=mysql_fetch_array($x);
+                                                    echo "<b>".$xx['Jumlah']."</b>";
+                                                ?>
                                             </div>
                                             <div>Rekam Medis Baru!</div>
                                         </div>
                                     </div>
                                 </div>
-                                <a href="../master/mobil.php">
+                                <a href="../transaksi/rekmedis.php">
                                     <div class="panel-footer">
                                         <span class="pull-left">View Details</span>
                                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -194,17 +194,17 @@ if (isset($_SESSION['login_user'])) {
                                         </div>
                                         <div class="col-xs-9 text-right">
                                             <div class="huge">
-                                                <!-- <?php
-                    $x=mysql_query("SELECT COUNT(no_spsk) AS Jumlah FROM spsk");
-                    $xx=mysql_fetch_array($x);
-                    echo "<b>".$xx['Jumlah']."</b>";
-                  ?> -->
+                                                <?php
+                                                    $x=mysql_query("SELECT COUNT(norujukan) AS Jumlah FROM trsuratrujukan");
+                                                    $xx=mysql_fetch_array($x);
+                                                    echo "<b>".$xx['Jumlah']."</b>";
+                                                ?>
                                             </div>
                                             <div>Surat Rujukan Baru!</div>
                                         </div>
                                     </div>
                                 </div>
-                                <a href="../transaksi/spsk.php">
+                                <a href="../transaksi/rujukan.php">
                                     <div class="panel-footer">
                                         <span class="pull-left">View Details</span>
                                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -222,17 +222,17 @@ if (isset($_SESSION['login_user'])) {
                                         </div>
                                         <div class="col-xs-9 text-right">
                                             <div class="huge">
-                                                <!-- <?php
-                    $x=mysql_query("SELECT COUNT(no_pengembalian) AS Jumlah FROM pengembalian");
-                    $xx=mysql_fetch_array($x);
-                    echo "<b>".$xx['Jumlah']."</b>";
-                  ?> -->
+                                                <?php
+                                                    $x=mysql_query("SELECT COUNT(nokwitansi) AS Jumlah FROM trkwitansi");
+                                                    $xx=mysql_fetch_array($x);
+                                                    echo "<b>".$xx['Jumlah']."</b>";
+                                                ?>
                                             </div>
                                             <div>Kwitansi Baru!</div>
                                         </div>
                                     </div>
                                 </div>
-                                <a href="../transaksi/pengembalian.php">
+                                <a href="../transaksi/kwitansi.php">
                                     <div class="panel-footer">
                                         <span class="pull-left">View Details</span>
                                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
