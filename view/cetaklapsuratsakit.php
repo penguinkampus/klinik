@@ -6,7 +6,7 @@ include '../koneksi.php';
   <div class='row'>
     <div class='col-lg-12'>
       <h3 class="page-header">
-        <a class="btn btn-defaul" href="lapdaftar.php">Kembali</a>
+        <a class="btn btn-defaul" href="lapsuratsakit.php">Kembali</a>
         <a class="btn btn-default no-print" href="javascript:printDiv('area-1');">Print</a>
       </h3>
     </div>
@@ -16,11 +16,6 @@ include '../koneksi.php';
     <div class="col-lg-12">
       <div id="area-1">
         <div>
-          <div align="center">
-            <img src="../img/cop.jpg" width="400px" alt="Logo Artha Laras"/><br>
-            <!-- Jl. Dr. Ciptomangunkusumo, No. 11, Ciledug - Tangerang 15153,<br>
-            Telp: 021-7319980 / 0812-1341-1361 <br><br> -->
-          </div>
           <hr>
           <div align="center">
             <b><u>Laporan Surat Sakit</u></b>
@@ -75,12 +70,12 @@ include '../koneksi.php';
    
       ?></td>
     <td><?php echo $tampil['nmpasien']; ?></td>
-        <td><?php echo $tampil['umur']; ?></td>
+        <td align="center"><?php echo $tampil['umur']; ?></td>
             <td><?php echo $tampil['pekerjaan']; ?></td>
     <td><?php echo $tampil['alamat']; ?></td>
-        <td><?php echo $tampil['lamahari']; ?></td>
-            <td><?php echo $tampil['tglawal']; ?></td>
-                <td><?php echo $tampil['tglakhir']; ?></td>
+        <td align="center"><?php echo $tampil['lamahari']; ?></td>
+            <td align="center"><?php echo $tampil['tglawal']; ?></td>
+                <td align="center"><?php echo $tampil['tglakhir']; ?></td>
    </tr>
   <?php  } ?>
 </table>
