@@ -42,6 +42,7 @@ include '../koneksi.php';
                                 </td>
                                 <td align="center">
                                     <a href="det-resep.php?nomedis=<?php echo $tampil['nomedis'] ?>" class="btn btn-info btn-sm">Detail</a>
+                                    <a href="cetakresep.php?nomedis=<?php echo $tampil['nomedis'] ?>" class="btn btn-warning btn-sm">Cetak</a> 
                                 </td>
                             </tr>
                             <?php } ?>
