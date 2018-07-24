@@ -37,6 +37,7 @@ include '../koneksi.php';
             <td><?php echo $tampil['keluhan']; ?></td>
             <td align="center">
               <a href="det-daftar.php?nodaftar=<?php echo $tampil['nodaftar'] ?>" class="btn btn-info btn-sm">Detail</a>
+              <a href="cetakantrian.php?nodaftar=<?php echo $tampil['nodaftar'] ?>" class="btn btn-warning btn-sm">Cetak Antrian</a> 
             </td>
           </tr>
           <?php } ?>
