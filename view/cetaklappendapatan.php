@@ -46,7 +46,7 @@ include '../koneksi.php';
   <tr>
     <?php
     $no = 1;
-   
+    $gt = 0;
     $get = mysql_query("
           
            SELECT * from trkwitansi a
