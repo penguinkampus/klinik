@@ -197,11 +197,11 @@ mysql_query("DELETE FROM dbobat WHERE kdobat='$kdobat'");
           </div>
           <div class="form-group">
             <label>Keterangan</label>
-            <input id="keterangan" name="keterangan" type="text" class="form-control" placeholder="Nama obat" onkeyup="validHuruf(this)" required>
+            <input id="keterangan" name="keterangan" type="text" class="form-control" placeholder="Keterangan obat" onkeyup="validHuruf(this)" required>
           </div>
           <div class="form-group">
             <label>Harga</label>
-            <input id="harga" name="harga" type="text" class="form-control" placeholder="Nama obat" onkeyup="validAngka(this)" required>
+            <input id="harga" name="harga" type="text" class="form-control" placeholder="Harga obat" onkeyup="validAngka(this)" required>
           </div>
         </div>
         <div class="modal-footer">
@@ -233,6 +233,14 @@ mysql_query("DELETE FROM dbobat WHERE kdobat='$kdobat'");
     $('#harga').val(harga);
   }
 
+  //validasi angka
+  function validAngka(a)
+  {
+    if(!/^[0-9.]+$/.test(a.value))
+    {
+      a.value = a.value.substring(0,a.value.length-1000);
+    }
+  }
 
   //validasi huruf
   function validHuruf(a)
