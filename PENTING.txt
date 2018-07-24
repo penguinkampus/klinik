@@ -5,5 +5,4 @@
 5. Untuk kop surat cetakan laporan belum diberikan resmi image nya sehingga di tiadakan
 
 Belom:
-1. Cetak Resep
-2. Pengurangan Stock Obat
+1. Pengurangan Stock Obat
