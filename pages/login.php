@@ -28,7 +28,7 @@
         <p id="profile-name" class="profile-name-card"></p>
         <form action="loginact.php" method="POST" class="form-signin">
             <span id="reauth-email" class="reauth-email"></span>
-            <input type="text" id="inputEmail" name="username" class="form-control" placeholder="Username" required>
+            <input type="text" id="inputEmail" name="nmpetugas" class="form-control" placeholder="Username" required>
             <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
             <div id="remember" class="checkbox">
                 <label>
