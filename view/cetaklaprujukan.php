@@ -90,7 +90,7 @@ include '../koneksi.php';
 <div align="right">
   <table width="150px" border="0" height="150px">
     <tr>
-      <td align="center"><b>Staff Admin</b></td>
+      <td align="center"><b>Petugas</b></td>
     </tr>
     <tr>
       <td align="center">( <?php echo $_SESSION['login_user']; ?> )</td>
