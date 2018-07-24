@@ -59,7 +59,7 @@ include '../koneksi.php';
 
           ");
     while ($tampil=mysql_fetch_array($get)) {
-      $gt = $tampil['subtotal'];
+      $gt += $tampil['subtotal'];
     ?>
     <td align="center">
     <?php
@@ -77,6 +77,7 @@ include '../koneksi.php';
    </tr>
   <?php  } ?>
   <tr>
+  
                 <td colspan="4" align="center"><b>Sub Total</b></td>
                         <td  align="center"><b>Rp. <?php echo $gt; ?></b></td>
                       </tr>
@@ -85,7 +86,7 @@ include '../koneksi.php';
 <div align="right">
   <table width="150px" border="0" height="150px">
     <tr>
-      <td align="center"><b>Staff Admin</b></td>
+      <td align="center"><b>Petugas</b></td>
     </tr>
     <tr>
       <td align="center">( <?php echo $_SESSION['login_user']; ?> )</td>
